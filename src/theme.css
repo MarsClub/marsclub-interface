@@ -1,0 +1,25 @@
+/*
+ * La palette de la maison, en un seul endroit.
+ *
+ * Elle vient du site (site/src/app/globals.css) : ne jamais inventer de
+ * couleur. Jaune et vert servent UNIQUEMENT d'aplat de fond, jamais de
+ * texte — lisibilité en plein soleil, et les PDF s'impriment. Le texte sur
+ * aplat coloré reste charbon.
+ *
+ * À importer après Tailwind dans le CSS global de chaque outil :
+ *
+ *   @import "tailwindcss";
+ *   @import "marsclub-interface/theme.css";
+ *   @source "../../node_modules/marsclub-interface/dist";
+ *
+ * La ligne `@source` n'est pas optionnelle : Tailwind ne scanne pas
+ * `node_modules`, et sans elle les classes des composants partagés sont
+ * purgées — les filtres arrivent sans style, sans la moindre erreur.
+ */
+@theme inline {
+  --color-charbon: #373336;
+  --color-sable: #d6cdaa;
+  --color-creme: #faf7f0;
+  --color-jaune-bam: #ffde59;
+  --color-vert-olla: #78e762;
+}
