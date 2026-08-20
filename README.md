@@ -80,9 +80,32 @@ import { ZoneFiltres, classeFiltre, classeFiltreLieu } from 'marsclub-interface'
 quatre variantes qu'on vient de supprimer. Un besoin qui n'entre pas dans la
 charte se discute ici, et profite alors à tous les outils.
 
-## Ce qui viendra ici
+## Fermer, retirer, confirmer
 
-Les mêmes candidats, déjà mutualisés à l'intérieur d'Hora et qui méritent de
-monter d'un cran : **BoutonFermer** et **CroixRetirer** (fermer est toujours un
-bouton bordé, supprimer toujours une croix discrète), et **BoutonConfirme**,
-qui demande confirmation avant un geste qui sort de l'outil.
+- **`BoutonFermer`** — fermer est toujours un bouton bordé qui dit « Fermer ».
+- **`CroixRetirer`** — retirer est toujours une croix discrète, avec son
+  intitulé au survol.
+- **`BoutonConfirme`** — demande confirmation avant un geste qui **sort** de
+  l'outil : envoyer un email, faire courir un délai. La question nomme la
+  conséquence, pas « Confirmer ? ».
+
+Fermer et supprimer se ressemblaient assez pour hésiter, alors que l'un est
+sans conséquence et l'autre non. C'est pour ça qu'ils ont deux formes.
+
+### `Lien` est injectable, et c'est voulu
+
+`BoutonFermer` ne dépend **pas** de Next : il rendrait sinon ce choix
+obligatoire pour tout outil futur. Une application Next passe son `Link` et
+garde la navigation côté client ; les autres laissent le `<a>` par défaut.
+
+```tsx
+import Link from 'next/link'
+<BoutonFermer href="/planning" Lien={Link} />
+```
+
+## Les tests fixent la doctrine
+
+Le paquet ne teste pas des pixels, il teste des **intentions** : qu'un filtre
+actif n'ait jamais de fond plein, que les deux états gardent la même épaisseur
+de cadre, que chaque enseigne garde sa couleur. Si l'un tombe, c'est qu'une
+règle a été défaite — pas qu'un détail a bougé.
