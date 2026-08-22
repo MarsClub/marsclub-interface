@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { CLASSE_FERMER, cadreFiltre, classeFiltre, classeFiltreLieu } from './index.js'
+import { CLASSE_FERMER, PorteurJeton, cadreFiltre, classeFiltre, classeFiltreLieu } from './index.js'
 
 describe('l’état d’un filtre se dit par le cadre, jamais par un aplat', () => {
   it('l’actif porte un cadre sombre et épais', () => {
@@ -42,5 +42,26 @@ describe('fermer reste reconnaissable', () => {
     expect(CLASSE_FERMER).toContain('border')
     expect(CLASSE_FERMER).toContain('bg-white')
     expect(CLASSE_FERMER).not.toContain('bg-charbon')
+  })
+})
+
+describe('le porteur du jeton s’affiche, sans jamais devenir une commande', () => {
+  // Le composant est une fonction pure : l'appeler rend l'arbre React, qu'on
+  // inspecte sans navigateur ni bibliothèque de rendu.
+  const arbre = PorteurJeton({ prenom: 'Lisa' }) as {
+    type: string
+    props: { title?: string; className?: string }
+  }
+
+  it('n’est pas un bouton ni un lien — c’est un état, pas un geste', () => {
+    // Si ça devient cliquable un jour, ce sera une décision, pas une dérive :
+    // il n'y a rien à faire depuis cet endroit, changer de porteur se fait en
+    // suivant son propre lien.
+    expect(arbre.type).not.toBe('button')
+    expect(arbre.type).not.toBe('a')
+  })
+
+  it('dit le prénom en toutes lettres au survol', () => {
+    expect(arbre.props.title).toContain('Lisa')
   })
 })
