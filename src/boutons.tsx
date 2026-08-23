@@ -11,6 +11,13 @@
  * **fermer est toujours un bouton bordé qui dit « Fermer »**, **retirer est
  * toujours une croix discrète**, et la croix porte toujours son intitulé au
  * survol — le geste est petit, sa conséquence ne l'est pas forcément.
+ *
+ * **Et il a toujours la même place** (Roch, 23/08/2026) : dans un panneau,
+ * **« Fermer » va en HAUT À DROITE, les gestes qui changent quelque chose en
+ * BAS À GAUCHE**. Hora les avait des deux façons — deux panneaux fermaient par
+ * le haut, deux par le bas, entre « Supprimer » et « Enregistrer ». On fermait
+ * donc au milieu de deux boutons qui, eux, engagent. Un même geste se fait au
+ * même endroit partout, sinon on lit l'écran au lieu de l'utiliser.
  */
 
 /** La classe d'un bouton de sortie, pour les cas qui n'utilisent pas le composant. */
