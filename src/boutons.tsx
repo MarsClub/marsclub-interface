@@ -14,7 +14,7 @@
  *
  * **Et il a toujours la même place** (Roch, 23/08/2026) : dans un panneau,
  * **« Fermer » va en HAUT À DROITE, les gestes qui changent quelque chose en
- * BAS À GAUCHE**. Hora les avait des deux façons — deux panneaux fermaient par
+ * BAS À DROITE**. Hora les avait des deux façons — deux panneaux fermaient par
  * le haut, deux par le bas, entre « Supprimer » et « Enregistrer ». On fermait
  * donc au milieu de deux boutons qui, eux, engagent. Un même geste se fait au
  * même endroit partout, sinon on lit l'écran au lieu de l'utiliser.
