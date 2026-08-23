@@ -65,3 +65,19 @@ describe('le porteur du jeton s’affiche, sans jamais devenir une commande', ()
     expect(arbre.props.title).toContain('Lisa')
   })
 })
+
+describe('le porteur du jeton a deux allures, pas deux implémentations', () => {
+  const classes = (v?: 'rail' | 'ligne') =>
+    (PorteurJeton({ prenom: 'Lisa', variante: v }) as { props: { className: string } }).props.className
+
+  it('encadré dans un rail, nu sur une ligne', () => {
+    // C'est la bordure en dur qui avait poussé Hora à réécrire l'affichage
+    // ailleurs plutôt qu'à réutiliser le composant.
+    expect(classes('rail')).toContain('border-y')
+    expect(classes('ligne')).not.toContain('border-y')
+  })
+
+  it('et le rail reste l’allure par défaut', () => {
+    expect(classes()).toBe(classes('rail'))
+  })
+})

@@ -29,17 +29,38 @@ export function IconePersonne({ className = '' }: { className?: string }) {
 }
 
 /**
- * Le porteur du jeton en cours, dans le rail de navigation.
+ * Le porteur du jeton en cours.
  *
- * Le prénom suffit : c'est ainsi qu'on se nomme en salle, et un rail étroit
- * ne tient pas un nom complet. `title` porte la phrase entière pour qui
- * survole — utile quand deux prénoms se ressemblent.
+ * Le prénom suffit : c'est ainsi qu'on se nomme en salle, et un rail étroit ne
+ * tient pas un nom complet. `title` porte la phrase entière pour qui survole —
+ * utile quand deux prénoms se ressemblent.
+ *
+ * **Deux allures, un seul composant** (23/08/2026). Hora avait fini par en
+ * réécrire l'affichage à la main à deux endroits — barre du haut sur
+ * téléphone, pied du menu — parce que la version du rail portait ses bordures
+ * en dur. Trois rendus pour une seule information, c'est exactement ce que ce
+ * paquet existe pour empêcher : la variante remplace la recopie.
+ *
+ * - `rail` : bloc encadré et centré, pour une colonne étroite ;
+ * - `ligne` : inline et sans bordure, pour une barre ou un pied de panneau.
  */
-export function PorteurJeton({ prenom }: { prenom: string }) {
+export function PorteurJeton({
+  prenom,
+  variante = 'rail',
+  className = '',
+}: {
+  prenom: string
+  variante?: 'rail' | 'ligne'
+  className?: string
+}) {
+  const allure =
+    variante === 'rail'
+      ? 'mb-4 justify-center border-y border-sable py-1.5 text-charbon/70'
+      : 'text-charbon/70'
   return (
     <p
       title={`Vous êtes identifié·e comme ${prenom}.`}
-      className="mb-4 flex items-center justify-center gap-1 border-y border-sable py-1.5 text-sm text-charbon/70"
+      className={`flex items-center gap-1 text-sm ${allure} ${className}`.trim()}
     >
       <IconePersonne className="shrink-0 opacity-60" />
       <span className="truncate font-semibold">{prenom}</span>
