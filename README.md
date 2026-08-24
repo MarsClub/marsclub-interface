@@ -103,6 +103,29 @@ import Link from 'next/link'
 <BoutonFermer href="/planning" Lien={Link} />
 ```
 
+## L'icône de la maison
+
+**Règle Roch du 24/08/2026 : chaque outil interne porte la favicon de la
+maison** — le logo bicolore (la cheffe sur fond jaune BāM / vert OLLā). Un
+onglet de navigateur sans elle est un outil qu'on ne retrouve pas parmi dix
+onglets ; et le triangle par défaut de Vercel dit « chantier », pas « outil
+de la maison ».
+
+Le fichier canonique vit ici : [`icone-marsclub.png`](./icone-marsclub.png)
+(500 × 500). Pour un outil Next :
+
+```
+sips -z 256 256 node_modules/marsclub-interface/icone-marsclub.png --out src/app/icon.png
+```
+
+…et **supprimer le `src/app/favicon.ico` par défaut**, sinon les deux
+balises cohabitent et le navigateur choisit. Pour un outil qui n'est pas en
+Next, servir le PNG et le déclarer en `<link rel="icon">`.
+
+L'icône ne se redessine jamais dans un outil — même raison que le reste :
+ce qui est recopié à la main diverge. Si le logo change un jour, il change
+ICI, et chaque outil régénère son `icon.png`.
+
 ## Les tests fixent la doctrine
 
 Le paquet ne teste pas des pixels, il teste des **intentions** : qu'un filtre
