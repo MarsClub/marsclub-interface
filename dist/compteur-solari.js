@@ -49,7 +49,7 @@ export function paletteEnRoute(cible, restants) {
         return cible; // symbole ou espace : rien à faire
     return alphabet[modulo(alphabet.indexOf(cible) - restants, alphabet.length)] ?? cible;
 }
-export function CompteurSolari({ valeur, unite, intitule, }) {
+export function CompteurSolari({ valeur, unite, intitule, compact = false, className = '', }) {
     const cibles = [...valeur];
     const [affiche, setAffiche] = useState(cibles);
     useEffect(() => {
@@ -79,9 +79,9 @@ export function CompteurSolari({ valeur, unite, intitule, }) {
         // La valeur ne change pas en cours de vie : une seule mise en route.
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [valeur]);
-    return (_jsxs("div", { className: "rounded-2xl border-2 border-charbon bg-charbon p-4 text-creme", children: [intitule && _jsx("p", { className: "mb-2 text-xs uppercase tracking-widest opacity-70", children: intitule }), _jsxs("p", { className: "flex flex-wrap items-baseline gap-x-2 gap-y-1", "aria-hidden": "true", children: [_jsx("span", { className: "flex gap-[0.15em] font-display text-3xl tabular-nums md:text-4xl", children: affiche.map((c, i) => c === ' ' ? (_jsx("span", { className: "w-[0.35em]" }, i)) : (_jsxs("span", { 
+    return (_jsxs("div", { className: `${compact ? 'rounded-xl p-2' : 'rounded-2xl p-4'} border-2 border-charbon bg-charbon text-creme ${className}`, children: [intitule && _jsx("p", { className: "mb-2 text-xs uppercase tracking-widest opacity-70", children: intitule }), _jsxs("p", { className: compact ? 'flex flex-col gap-y-1' : 'flex flex-wrap items-baseline gap-x-2 gap-y-1', "aria-hidden": "true", children: [_jsx("span", { className: `flex gap-[0.15em] font-display tabular-nums ${compact ? 'text-2xl' : 'text-3xl md:text-4xl'}`, children: affiche.map((c, i) => c === ' ' ? (_jsx("span", { className: "w-[0.35em]" }, i)) : (_jsxs("span", { 
                             // Le fond d'une palette est un charbon plus sombre que le
                             // panneau : c'est la seule teinte hors palette du paquet, et
                             // elle ne sert qu'à creuser les cases — jamais du texte.
-                            className: "relative inline-flex h-[1.25em] w-[0.72em] items-center justify-center overflow-hidden rounded-[0.1em] bg-[#22201f]", children: [_jsx("span", { className: "solari-palette leading-none", children: c }, c), _jsx("span", { className: "pointer-events-none absolute inset-x-0 top-1/2 h-px bg-creme/20" })] }, i))) }), _jsx("span", { className: "text-sm opacity-80", children: unite })] }), _jsx("p", { className: "sr-only", children: `${valeur} ${unite}` })] }));
+                            className: "relative inline-flex h-[1.25em] w-[0.72em] items-center justify-center overflow-hidden rounded-[0.1em] bg-[#22201f]", children: [_jsx("span", { className: "solari-palette leading-none", children: c }, c), _jsx("span", { className: "pointer-events-none absolute inset-x-0 top-1/2 h-px bg-creme/20" })] }, i))) }), _jsx("span", { className: `${compact ? 'text-xs leading-snug' : 'text-sm'} opacity-80`, children: unite })] }), _jsx("p", { className: "sr-only", children: `${valeur} ${unite}` })] }));
 }

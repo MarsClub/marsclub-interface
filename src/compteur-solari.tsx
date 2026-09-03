@@ -57,6 +57,8 @@ export function CompteurSolari({
   valeur,
   unite,
   intitule,
+  compact = false,
+  className = '',
 }: {
   /** Ce qui roule. Les espaces deviennent des vides, pas des palettes. */
   valeur: string
@@ -64,6 +66,13 @@ export function CompteurSolari({
   unite: string
   /** Ce que le nombre veut dire, au-dessus. Facultatif : l'unité suffit souvent à lire le panneau. */
   intitule?: string
+  /**
+   * Pour un coin d'écran plutôt qu'un panneau (04/09/2026, le coin de la
+   * grille murale d'Hora) : marges serrées, palettes plus petites, l'unité
+   * passe SOUS le chiffre au lieu de le suivre.
+   */
+  compact?: boolean
+  className?: string
 }) {
   const cibles = [...valeur]
   const [affiche, setAffiche] = useState(cibles)
@@ -99,11 +108,18 @@ export function CompteurSolari({
   }, [valeur])
 
   return (
-    <div className="rounded-2xl border-2 border-charbon bg-charbon p-4 text-creme">
+    <div
+      className={`${compact ? 'rounded-xl p-2' : 'rounded-2xl p-4'} border-2 border-charbon bg-charbon text-creme ${className}`}
+    >
       {intitule && <p className="mb-2 text-xs uppercase tracking-widest opacity-70">{intitule}</p>}
       {/* Les palettes sont un décor : la vraie phrase est lue juste en dessous. */}
-      <p className="flex flex-wrap items-baseline gap-x-2 gap-y-1" aria-hidden="true">
-        <span className="flex gap-[0.15em] font-display text-3xl tabular-nums md:text-4xl">
+      <p
+        className={compact ? 'flex flex-col gap-y-1' : 'flex flex-wrap items-baseline gap-x-2 gap-y-1'}
+        aria-hidden="true"
+      >
+        <span
+          className={`flex gap-[0.15em] font-display tabular-nums ${compact ? 'text-2xl' : 'text-3xl md:text-4xl'}`}
+        >
           {affiche.map((c, i) =>
             c === ' ' ? (
               <span key={i} className="w-[0.35em]" />
@@ -125,7 +141,7 @@ export function CompteurSolari({
             ),
           )}
         </span>
-        <span className="text-sm opacity-80">{unite}</span>
+        <span className={`${compact ? 'text-xs leading-snug' : 'text-sm'} opacity-80`}>{unite}</span>
       </p>
       <p className="sr-only">{`${valeur} ${unite}`}</p>
     </div>
