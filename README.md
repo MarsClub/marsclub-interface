@@ -103,6 +103,23 @@ import Link from 'next/link'
 <BoutonFermer href="/planning" Lien={Link} />
 ```
 
+## Le compteur à palettes
+
+`CompteurSolari` — l'affichage de gare, celui qui fait claquer les caractères
+jusqu'à se poser. Né sur marsclub.fr (page des outils de la maison,
+01/09/2026), entré ici le 03/09/2026 pour l'iPad mural d'Hora : un chiffre
+qu'on veut voir de loin roule avec le même geste partout.
+
+```tsx
+import { CompteurSolari } from 'marsclub-interface'
+<CompteurSolari valeur="12" unite="avis Google cette semaine · 1 pour 53 couverts" />
+```
+
+Le rendu serveur porte déjà la valeur finale (sans JavaScript on lit le bon
+nombre) ; un chiffre ne fait défiler que des chiffres ; `prefers-reduced-motion`
+coupe l'animation. ⚠️ Le claquement vit dans `theme.css` — c'est une raison de
+plus de l'importer.
+
 ## L'icône de la maison
 
 **Règle Roch du 24/08/2026 : chaque outil interne porte la favicon de la

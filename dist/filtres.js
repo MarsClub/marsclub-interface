@@ -8,6 +8,15 @@ export const classeFiltreLieu = (lieu, actif) => `rounded-lg px-2.5 py-1 font-bo
 /** Une action DANS la barre de filtres — retirer les filtres, par exemple. */
 export const classeActionFiltre = 'rounded-lg border-2 border-charbon/15 bg-white px-2 py-1 font-semibold hover:border-charbon';
 /** La zone qui les contient. */
-export function ZoneFiltres({ children }) {
+/**
+ * Un groupe encadré de petites commandes.
+ *
+ * Renommée depuis `ZoneFiltres` le 23/08/2026 : le cadre ne dit pas
+ * « filtres », il dit « ces boutons vont ensemble ». Hora s'en sert pour les
+ * filtres, pour les deux façons de créer, et pour les deux publications —
+ * trois groupes qu'on lit d'un coup au lieu d'une file de boutons dont on ne
+ * sait plus lequel appartient à quoi.
+ */
+export function Cartouche({ children }) {
     return (_jsx("div", { className: "flex flex-wrap items-center gap-1.5 rounded-xl border-2 border-sable bg-white/50 px-2 py-1 text-sm", children: children }));
 }

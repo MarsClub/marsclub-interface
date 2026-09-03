@@ -23,3 +23,29 @@
   --color-jaune-bam: #ffde59;
   --color-vert-olla: #78e762;
 }
+
+/*
+ * Le claquement des palettes du compteur Solari (`CompteurSolari`). Chaque
+ * caractère qui change se remonte avec cette animation ; sans elle, les
+ * palettes changent sans claquer. Coupée net pour qui préfère moins de
+ * mouvement.
+ */
+@keyframes solari-palette {
+  from {
+    transform: scaleY(0.1);
+    opacity: 0.4;
+  }
+  to {
+    transform: scaleY(1);
+    opacity: 1;
+  }
+}
+.solari-palette {
+  animation: solari-palette 0.09s ease-out;
+  transform-origin: 50% 0;
+}
+@media (prefers-reduced-motion: reduce) {
+  .solari-palette {
+    animation: none;
+  }
+}
