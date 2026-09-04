@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { CLASSE_FERMER, PorteurJeton, cadreFiltre, classeFiltre, classeFiltreLieu } from './index.js'
+import { CLASSE_FERMER, MAISON_FILTRE, PorteurJeton, cadreFiltre, classeFiltre, classeFiltreLieu } from './index.js'
 
 describe('l’état d’un filtre se dit par le cadre, jamais par un aplat', () => {
   it('l’actif porte un cadre sombre et épais', () => {
@@ -79,5 +79,12 @@ describe('le porteur du jeton a deux allures, pas deux implémentations', () => 
 
   it('et le rail reste l’allure par défaut', () => {
     expect(classes()).toBe(classes('rail'))
+  })
+})
+
+describe('le périmètre entier dans un filtre', () => {
+  it('s’écrit « 🏡 MC », jamais le nom entier — la barre tiendrait sur deux lignes', () => {
+    expect(MAISON_FILTRE).toBe('🏡 MC')
+    expect(MAISON_FILTRE).not.toContain('Mārs')
   })
 })

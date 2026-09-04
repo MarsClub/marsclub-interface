@@ -40,6 +40,12 @@ Arbitrages Roch du 20/08/2026 :
 
 Et une règle de place : **les filtres à gauche, la droite aux actions.**
 
+**Le périmètre entier s'écrit « 🏡 MC »** (`MAISON_FILTRE`), jamais
+« Mārs Clūb », dans un filtre et sur la ligne de total qui lui répond
+(règle Roch, 04/09/2026). Le nom entier faisait passer une barre de filtres
+à deux lignes sur téléphone. L'abréviation est interne : partout où quelqu'un
+d'autre lit — email, PDF, page publique — la marque garde ses deux macrons.
+
 Les enseignes gardent leur couleur de marque — c'est le repère le plus rapide
 de l'outil, et il vaut sur tous les écrans.
 
