@@ -1,25 +1,24 @@
 /**
- * Les messages de la charte (§5) : trois tons, un seul gabarit. Hora en avait
- * neuf teintes (revue du 04/09/2026) — cinq rouges, quatre oranges.
+ * Les messages de la charte (§5) — un seul rouge, un seul sens (Roch,
+ * 04/09/2026) : « le rouge veut dire attention ». Le POIDS se dit par la
+ * forme, jamais par une seconde couleur :
  *
- * | Ton          | Sens                                         | Signe                    |
- * |--------------|----------------------------------------------|--------------------------|
- * | refus        | l'action n'a pas eu lieu, et pourquoi         | cadre rouge              |
- * | vigilance    | rien n'est bloqué, mais il faut regarder      | cadre charbon, ⚠ devant  |
- * | ok           | c'est fait, et ce que ça implique             | cadre sable, fond sable  |
+ * | Forme                | Sens                                              |
+ * |----------------------|---------------------------------------------------|
+ * | bandeau rouge        | l'action est refusée, ou il y a quelque chose à faire |
+ * | ⚠ rouge sur une valeur | hors repère : un seuil dépassé, un prix trop vieux |
+ * | bandeau sable        | c'est fait, et ce que ça implique                 |
  *
- * ⚠️ **L'orange n'existe pas dans la palette de la maison** (Roch,
- * 04/09/2026 : « le orange n'existe pas dans notre charte »). La vigilance
- * se dit en charbon avec le glyphe ⚠, le langage d'icônes de la charte. Le
- * rouge reste la SEULE couleur hors palette : un refus doit se distinguer
- * d'une vigilance au premier regard. Pas de vert non plus : la confirmation
- * est sable, comme tout état acquis.
+ * Les tons `refus` et `vigilance` rendent le MÊME bandeau : ils restent
+ * distincts dans le code parce que le message n'est pas le même, et parce
+ * qu'un `role="alert"` ne convient qu'au refus. Pas de vert, pas d'orange,
+ * pas de charbon-⚠ : treize rendus d'« attention » sont devenus trois.
  */
 export type Ton = 'refus' | 'vigilance' | 'ok'
 
 const BORDURE: Record<Ton, string> = {
   refus: 'border-red-600 bg-white',
-  vigilance: "border-charbon bg-white before:content-['⚠_']",
+  vigilance: 'border-red-600 bg-white',
   ok: 'border-sable bg-sable/40',
 }
 
@@ -35,11 +34,10 @@ export function Bandeau({ ton, children, className = '' }: { ton: Ton; children:
 
 /**
  * Une valeur hors repère — un ratio au-dessus du seuil, un prix trop vieux,
- * un chiffre qui manque : charbon gras, précédé du glyphe ⚠. Aucune couleur :
- * l'orange n'est pas dans la palette. Le mot qui explique va à côté ; le
- * glyphe seul ne dit pas pourquoi.
+ * un chiffre qui manque : ⚠ rouge devant, en gras. Le mot qui explique va à
+ * côté ; la couleur seule ne dit rien.
  */
-export const CLASSE_HORS_REPERE = "font-bold text-charbon before:content-['⚠_']"
+export const CLASSE_HORS_REPERE = "font-bold text-red-700 before:content-['⚠_']"
 
 /** Un état vide qui parle : une phrase centrée, qui dit quoi faire ou pourquoi c'est vide. */
 export function Vide({ children, className = '' }: { children: React.ReactNode; className?: string }) {

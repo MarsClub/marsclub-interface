@@ -21,7 +21,8 @@ import { jsx as _jsx } from "react/jsx-runtime";
  * même endroit partout, sinon on lit l'écran au lieu de l'utiliser.
  */
 /** La classe d'un bouton de sortie, pour les cas qui n'utilisent pas le composant. */
-export const CLASSE_FERMER = 'rounded-lg border border-charbon/30 bg-white px-3 py-1.5 text-sm font-semibold hover:border-charbon';
+/** Fermer est un bouton comme les autres (04/09/2026) — même forme, même survol. */
+export const CLASSE_FERMER = 'rounded-lg border border-charbon/30 bg-white px-3 py-1.5 text-sm font-semibold text-charbon hover:border-charbon hover:bg-charbon hover:text-creme focus-visible:border-charbon focus-visible:bg-charbon focus-visible:text-creme focus-visible:outline-none transition-colors';
 /**
  * Quitter un panneau sans rien changer.
  *

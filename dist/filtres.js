@@ -1,6 +1,11 @@
 import { jsx as _jsx } from "react/jsx-runtime";
 /** Le signal d'état, commun à tous les filtres. */
-export const cadreFiltre = (actif) => actif ? 'border-2 border-charbon' : 'border-2 border-charbon/15 hover:border-charbon/40';
+/**
+ * Épaissi à 3 px le 04/09/2026 (Roch) : le cadre de 2 px se confondait avec
+ * le contour d'un bouton. Même épaisseur dans les deux états pour que les
+ * hauteurs s'alignent ; l'inactif fonce un peu au survol.
+ */
+export const cadreFiltre = (actif) => actif ? 'border-[3px] border-charbon' : 'border-[3px] border-charbon/15 hover:border-charbon/40';
 /** Un filtre ordinaire : Salle, Cuisine, Personne, Mārs Clūb… */
 export const classeFiltre = (actif) => `rounded-lg bg-white px-2.5 py-1 font-semibold ${cadreFiltre(actif)}`;
 /** Un filtre d'enseigne, qui porte sa couleur. */
@@ -9,7 +14,14 @@ export const classeFiltreLieu = (lieu, actif) =>
 // « 🏡 MC » tranchait trop à côté des deux maisons).
 `rounded-lg px-2.5 py-1 font-bold ${lieu === 'bam' ? 'bg-jaune-bam' : lieu === 'olla' ? 'bg-vert-olla' : 'bg-sable'} ${cadreFiltre(actif)}`;
 /** Une action DANS la barre de filtres — retirer les filtres, par exemple. */
-export const classeActionFiltre = 'rounded-lg border-2 border-charbon/15 bg-white px-2 py-1 font-semibold hover:border-charbon';
+export const classeActionFiltre = 'rounded-lg border-[3px] border-charbon/15 bg-white px-2 py-1 font-semibold hover:border-charbon';
+/**
+ * Une bascule à choix — jours, personnes, variantes, allergènes, famille —
+ * se dit par le MÊME cadre que le filtre (Roch, 04/09/2026) : sélectionner,
+ * c'est dire « c'est celui-là », jamais un bouton pressé. Le seul objet qui
+ * se remplit de charbon est un bouton survolé.
+ */
+export const classeBascule = (selectionne) => classeFiltre(selectionne);
 /** La zone qui les contient. */
 /**
  * Un groupe encadré de petites commandes.

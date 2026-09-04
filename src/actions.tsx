@@ -1,48 +1,52 @@
 import { CLASSE_FERMER } from './boutons.js'
 
 /**
- * Les poids d'action de la charte (§3), en classes — un écran se lit par ses
- * boutons, et quatre poids ne se mélangent pas. Hora en avait six gabarits
- * de « principal » et trois de « tertiaire » (revue du 04/09/2026).
+ * Un seul bouton d'action (Roch, 04/09/2026 — « une couleur, un sens »).
  *
- * | Poids       | Usage                                           |
- * |-------------|-------------------------------------------------|
- * | principal   | fait avancer : créer, valider, publier, envoyer |
- * | acquis      | un état réversible : publié ✓, validé ✓          |
- * | tertiaire   | naviguer, fermer, modifier, exporter            |
- * | vide        | à pourvoir, non renseigné                       |
+ * Avant, la charte avait quatre poids et faisait porter la hiérarchie par la
+ * couleur : dès qu'un écran avait deux actions il fallait choisir laquelle
+ * était « principale », et chaque écran choisissait autrement — 53 aplats
+ * charbon pour des boutons, 22 écrans mélangeant plein et bordé.
  *
- * **Un seul principal par zone.** Le destructif est un tertiaire isolé à
- * gauche de la barre — jamais un aplat rouge.
+ * Désormais : **texte charbon sur fond blanc, cadre charbon/30 ; au survol,
+ * au doigt posé ou au clavier, le bouton se remplit de charbon** — c'est la
+ * sélection qui vient. L'aplat charbon n'existe plus au repos. La hiérarchie
+ * se dit par la PLACE (le geste qui engage est le dernier à droite), par
+ * l'ICÔNE (seul le geste qui engage en porte une : commit, push, coche,
+ * cadenas) et par la TAILLE (trois seulement : standard, compacte dans une
+ * ligne, pleine largeur sur téléphone) — jamais par la couleur.
  */
-export const CLASSE_PRINCIPAL = 'rounded-lg bg-charbon px-4 py-1.5 text-sm font-semibold text-creme'
-export const CLASSE_ACQUIS = 'rounded-lg bg-sable px-4 py-1.5 text-sm font-semibold text-charbon'
-/** Tertiaire = la forme de « Fermer » : naviguer, modifier, exporter. */
-export const CLASSE_TERTIAIRE = CLASSE_FERMER
+const SURVOL = 'hover:border-charbon hover:bg-charbon hover:text-creme focus-visible:border-charbon focus-visible:bg-charbon focus-visible:text-creme focus-visible:outline-none transition-colors'
+
+export const CLASSE_BOUTON = `rounded-lg border border-charbon/30 bg-white px-3 py-1.5 text-sm font-semibold text-charbon ${SURVOL}`
+/** Dans une ligne de tableau ou de liste : plus petit, même règle. */
+export const CLASSE_BOUTON_COMPACT = `rounded-md border border-charbon/30 bg-white px-2 py-0.5 text-xs font-semibold text-charbon ${SURVOL}`
+/** Sur téléphone, pleine largeur et 44 px de haut. */
+export const CLASSE_BOUTON_TELEPHONE = `w-full rounded-lg border border-charbon/30 bg-white px-4 py-3 text-base font-semibold text-charbon ${SURVOL}`
+
+/** Alias gardés pour les écrans écrits avant le 04/09/2026 : tous rendent le même bouton. */
+export const CLASSE_PRINCIPAL = CLASSE_BOUTON
+export const CLASSE_TERTIAIRE = CLASSE_BOUTON
+export const CLASSE_PRINCIPAL_TELEPHONE = CLASSE_BOUTON_TELEPHONE
+
 /**
- * Le principal d'un écran de téléphone — la clôture de caisse, « J'accepte
- * cette mission » : pleine largeur, 44 px de haut. ⚠️ Une classe à part, et
- * non `CLASSE_PRINCIPAL` + `text-base` : Tailwind v4 émet `text-sm` après
- * `text-base`, la petite gagnerait.
+ * Un état acquis, NON cliquable : « publié ✓ », « mois clôturé le… ». Aplat
+ * sable, la couleur de fond de la charte (§3). Un lien ou un bouton ne
+ * prend jamais cette classe : ce qui se clique est un bouton.
  */
-export const CLASSE_PRINCIPAL_TELEPHONE = 'w-full rounded-lg bg-charbon px-4 py-3 text-base font-semibold text-creme'
-/**
- * Une bascule à choix (charte §4) : jours, personnes, variantes — l'état
- * sélectionné en charbon, l'autre en tertiaire. Ce n'est PAS un filtre (qui
- * se dit par le cadre) : une bascule engage ce qu'on va écrire.
- */
-export const classeBascule = (selectionne: boolean) =>
-  selectionne ? 'rounded-lg border border-charbon bg-charbon px-3 py-1.5 text-sm font-semibold text-creme' : CLASSE_TERTIAIRE
+export const CLASSE_ACQUIS = 'rounded-lg bg-sable px-3 py-1.5 text-sm font-semibold text-charbon'
+/** Un état en cours, pas encore acquis : le cadre sable sans fond. */
+export const CLASSE_EN_COURS = 'rounded-lg border-2 border-sable bg-transparent px-3 py-1.5 text-sm font-semibold text-charbon'
 export const CLASSE_VIDE =
   'rounded-lg border border-dashed border-charbon/40 bg-white px-3 py-1.5 text-sm font-semibold text-charbon/70'
 
-/** Les chevrons ‹ › et le retour au présent d'un en-tête daté. */
-export const CLASSE_NAV = 'rounded-lg border border-charbon/30 bg-white px-2.5 py-1 font-semibold hover:border-charbon'
+/** Les chevrons ‹ › et le retour au présent d'un en-tête daté : des boutons. */
+export const CLASSE_NAV = `rounded-lg border border-charbon/30 bg-white px-2.5 py-1 font-semibold text-charbon ${SURVOL}`
 
 /**
  * La barre d'actions d'un formulaire : trait sable au-dessus, le destructif
- * (ou « Dupliquer ») à GAUCHE, Fermer et l'action principale à DROITE.
- * `gauche` reste isolé par un espace : l'écart physique protège du faux clic.
+ * (ou « Dupliquer ») isolé à GAUCHE, le reste à DROITE, le geste qui engage
+ * en dernier. L'écart physique protège du faux clic.
  */
 export function BarreActions({ gauche, children }: { gauche?: React.ReactNode; children: React.ReactNode }) {
   return (

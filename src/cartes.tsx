@@ -84,7 +84,7 @@ export function Kpi({
         {libelle}
         {aide && <Aide texte={aide} />}
       </div>
-      <div className={`font-display text-lg font-semibold md:text-xl ${alerte ? "before:content-['⚠_']" : ''}`}>{valeur}</div>
+      <div className={`font-display text-lg font-semibold md:text-xl ${alerte ? "text-red-700 before:content-['⚠_']" : ''}`}>{valeur}</div>
       {detail && <div className="text-[10px] leading-tight tabular-nums text-charbon/50 md:text-xs">{detail}</div>}
       {echo && <div className="text-[10px] leading-tight tabular-nums text-charbon/45 md:text-xs">{echo}</div>}
     </div>

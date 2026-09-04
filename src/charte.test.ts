@@ -23,8 +23,7 @@ describe('les trois tons de message', () => {
       expect(classeBandeau(ton)).not.toMatch(/green|vert/)
     }
     expect(classeBandeau('refus')).toContain('border-red-600')
-    expect(classeBandeau('vigilance')).toContain('border-charbon')
-    expect(classeBandeau('vigilance')).toContain('⚠')
+    expect(classeBandeau('vigilance')).toContain('border-red-600')
     expect(classeBandeau('ok')).toContain('border-sable')
   })
 
@@ -36,12 +35,12 @@ describe('les trois tons de message', () => {
 })
 
 describe('les poids d’action', () => {
-  it('le principal est un aplat charbon, le tertiaire un cadre — et Fermer EST un tertiaire', () => {
-    expect(CLASSE_PRINCIPAL).toContain('bg-charbon')
-    expect(CLASSE_PRINCIPAL).toContain('text-creme')
+  it('principal, tertiaire et Fermer sont le même bouton (2.0) : blanc au repos, charbon au survol', () => {
+    expect(CLASSE_PRINCIPAL).toBe(CLASSE_TERTIAIRE)
+    expect(CLASSE_PRINCIPAL).toContain('hover:bg-charbon')
     expect(CLASSE_TERTIAIRE).toBe(CLASSE_FERMER)
     expect(CLASSE_TERTIAIRE).toContain('border-charbon/30')
-    expect(CLASSE_TERTIAIRE).not.toContain('bg-charbon')
+    expect(CLASSE_TERTIAIRE).not.toMatch(/(^|\s)bg-charbon(\s|$)/)
   })
 
   it('les chevrons sont des tertiaires, sans texte', () => {

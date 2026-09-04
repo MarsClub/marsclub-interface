@@ -25,6 +25,35 @@ utilisateur ce qu'il savait déjà.
 - **La barre de filtres** — `ZoneFiltres`, `classeFiltre`, `classeFiltreLieu`,
   `classeActionFiltre`.
 
+## Une couleur, un sens (2.0, 04/09/2026)
+
+Roch, sur les captures de Victus et d'Hora : « notre interface est en désordre
+là-dessus ; il nous faut une règle unique et commune ». La voici, en sept
+points, chacun fixé par un test (`regle-unique.test.ts`) :
+
+1. **Un bouton d'action est charbon sur blanc, et le survol le remplit.**
+   `CLASSE_BOUTON` (et `_COMPACT`, `_TELEPHONE`) — plus de « principal » par
+   la couleur ; `CLASSE_PRINCIPAL` et `CLASSE_TERTIAIRE` sont des alias du
+   même bouton.
+2. **La sélection se dit par un cadre charbon épais (3 px), jamais par un
+   aplat.** `classeFiltre`, `classeFiltreLieu`, et `classeBascule` qui est le
+   même cadre pour les jours, personnes, variantes, allergènes.
+3. **Le sable est l'aplat de fond** : badge de période (`EnTete`), états
+   acquis (`CLASSE_ACQUIS`, non cliquable), bandes. « En cours » est un
+   cadre sable sans fond (`CLASSE_EN_COURS`).
+4. **Le rouge veut dire attention, seule couleur hors palette.** Bandeau
+   rouge (refus ou à faire) ; `CLASSE_HORS_REPERE` (⚠ rouge sur une valeur).
+5. **Quatre survols, un par nature d'objet** : le bouton se remplit, le cadre
+   du filtre fonce, une ligne prend un voile sable, l'estompé remonte.
+6. **La hiérarchie se dit par la place, l'icône et la taille** : actions à
+   droite, le geste qui engage en dernier et seul à porter une icône, trois
+   tailles.
+7. **Ce qui va ensemble est cerclé de sable** (`Cartouche`), jamais un
+   module collé en charbon.
+
+Deux exceptions nommées : `CompteurSolari`, un décor de gare ; et les
+palettes de graphique, qui encodent une donnée.
+
 ## Les trois règles de la barre de filtres
 
 Arbitrages Roch du 20/08/2026 :

@@ -1,42 +1,27 @@
+export declare const CLASSE_BOUTON = "rounded-lg border border-charbon/30 bg-white px-3 py-1.5 text-sm font-semibold text-charbon hover:border-charbon hover:bg-charbon hover:text-creme focus-visible:border-charbon focus-visible:bg-charbon focus-visible:text-creme focus-visible:outline-none transition-colors";
+/** Dans une ligne de tableau ou de liste : plus petit, même règle. */
+export declare const CLASSE_BOUTON_COMPACT = "rounded-md border border-charbon/30 bg-white px-2 py-0.5 text-xs font-semibold text-charbon hover:border-charbon hover:bg-charbon hover:text-creme focus-visible:border-charbon focus-visible:bg-charbon focus-visible:text-creme focus-visible:outline-none transition-colors";
+/** Sur téléphone, pleine largeur et 44 px de haut. */
+export declare const CLASSE_BOUTON_TELEPHONE = "w-full rounded-lg border border-charbon/30 bg-white px-4 py-3 text-base font-semibold text-charbon hover:border-charbon hover:bg-charbon hover:text-creme focus-visible:border-charbon focus-visible:bg-charbon focus-visible:text-creme focus-visible:outline-none transition-colors";
+/** Alias gardés pour les écrans écrits avant le 04/09/2026 : tous rendent le même bouton. */
+export declare const CLASSE_PRINCIPAL = "rounded-lg border border-charbon/30 bg-white px-3 py-1.5 text-sm font-semibold text-charbon hover:border-charbon hover:bg-charbon hover:text-creme focus-visible:border-charbon focus-visible:bg-charbon focus-visible:text-creme focus-visible:outline-none transition-colors";
+export declare const CLASSE_TERTIAIRE = "rounded-lg border border-charbon/30 bg-white px-3 py-1.5 text-sm font-semibold text-charbon hover:border-charbon hover:bg-charbon hover:text-creme focus-visible:border-charbon focus-visible:bg-charbon focus-visible:text-creme focus-visible:outline-none transition-colors";
+export declare const CLASSE_PRINCIPAL_TELEPHONE = "w-full rounded-lg border border-charbon/30 bg-white px-4 py-3 text-base font-semibold text-charbon hover:border-charbon hover:bg-charbon hover:text-creme focus-visible:border-charbon focus-visible:bg-charbon focus-visible:text-creme focus-visible:outline-none transition-colors";
 /**
- * Les poids d'action de la charte (§3), en classes — un écran se lit par ses
- * boutons, et quatre poids ne se mélangent pas. Hora en avait six gabarits
- * de « principal » et trois de « tertiaire » (revue du 04/09/2026).
- *
- * | Poids       | Usage                                           |
- * |-------------|-------------------------------------------------|
- * | principal   | fait avancer : créer, valider, publier, envoyer |
- * | acquis      | un état réversible : publié ✓, validé ✓          |
- * | tertiaire   | naviguer, fermer, modifier, exporter            |
- * | vide        | à pourvoir, non renseigné                       |
- *
- * **Un seul principal par zone.** Le destructif est un tertiaire isolé à
- * gauche de la barre — jamais un aplat rouge.
+ * Un état acquis, NON cliquable : « publié ✓ », « mois clôturé le… ». Aplat
+ * sable, la couleur de fond de la charte (§3). Un lien ou un bouton ne
+ * prend jamais cette classe : ce qui se clique est un bouton.
  */
-export declare const CLASSE_PRINCIPAL = "rounded-lg bg-charbon px-4 py-1.5 text-sm font-semibold text-creme";
-export declare const CLASSE_ACQUIS = "rounded-lg bg-sable px-4 py-1.5 text-sm font-semibold text-charbon";
-/** Tertiaire = la forme de « Fermer » : naviguer, modifier, exporter. */
-export declare const CLASSE_TERTIAIRE = "rounded-lg border border-charbon/30 bg-white px-3 py-1.5 text-sm font-semibold hover:border-charbon";
-/**
- * Le principal d'un écran de téléphone — la clôture de caisse, « J'accepte
- * cette mission » : pleine largeur, 44 px de haut. ⚠️ Une classe à part, et
- * non `CLASSE_PRINCIPAL` + `text-base` : Tailwind v4 émet `text-sm` après
- * `text-base`, la petite gagnerait.
- */
-export declare const CLASSE_PRINCIPAL_TELEPHONE = "w-full rounded-lg bg-charbon px-4 py-3 text-base font-semibold text-creme";
-/**
- * Une bascule à choix (charte §4) : jours, personnes, variantes — l'état
- * sélectionné en charbon, l'autre en tertiaire. Ce n'est PAS un filtre (qui
- * se dit par le cadre) : une bascule engage ce qu'on va écrire.
- */
-export declare const classeBascule: (selectionne: boolean) => "rounded-lg border border-charbon/30 bg-white px-3 py-1.5 text-sm font-semibold hover:border-charbon" | "rounded-lg border border-charbon bg-charbon px-3 py-1.5 text-sm font-semibold text-creme";
+export declare const CLASSE_ACQUIS = "rounded-lg bg-sable px-3 py-1.5 text-sm font-semibold text-charbon";
+/** Un état en cours, pas encore acquis : le cadre sable sans fond. */
+export declare const CLASSE_EN_COURS = "rounded-lg border-2 border-sable bg-transparent px-3 py-1.5 text-sm font-semibold text-charbon";
 export declare const CLASSE_VIDE = "rounded-lg border border-dashed border-charbon/40 bg-white px-3 py-1.5 text-sm font-semibold text-charbon/70";
-/** Les chevrons ‹ › et le retour au présent d'un en-tête daté. */
-export declare const CLASSE_NAV = "rounded-lg border border-charbon/30 bg-white px-2.5 py-1 font-semibold hover:border-charbon";
+/** Les chevrons ‹ › et le retour au présent d'un en-tête daté : des boutons. */
+export declare const CLASSE_NAV = "rounded-lg border border-charbon/30 bg-white px-2.5 py-1 font-semibold text-charbon hover:border-charbon hover:bg-charbon hover:text-creme focus-visible:border-charbon focus-visible:bg-charbon focus-visible:text-creme focus-visible:outline-none transition-colors";
 /**
  * La barre d'actions d'un formulaire : trait sable au-dessus, le destructif
- * (ou « Dupliquer ») à GAUCHE, Fermer et l'action principale à DROITE.
- * `gauche` reste isolé par un espace : l'écart physique protège du faux clic.
+ * (ou « Dupliquer ») isolé à GAUCHE, le reste à DROITE, le geste qui engage
+ * en dernier. L'écart physique protège du faux clic.
  */
 export declare function BarreActions({ gauche, children }: {
     gauche?: React.ReactNode;

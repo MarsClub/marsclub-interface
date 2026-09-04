@@ -3,7 +3,7 @@ import { CLASSE_FERMER, MAISON_FILTRE, PorteurJeton, cadreFiltre, classeFiltre, 
 
 describe('l’état d’un filtre se dit par le cadre, jamais par un aplat', () => {
   it('l’actif porte un cadre sombre et épais', () => {
-    expect(cadreFiltre(true)).toContain('border-2')
+    expect(cadreFiltre(true)).toContain('border-[3px]')
     expect(cadreFiltre(true)).toContain('border-charbon')
   })
 
@@ -16,7 +16,7 @@ describe('l’état d’un filtre se dit par le cadre, jamais par un aplat', () 
   })
 
   it('les deux états ont la même épaisseur, pour que les hauteurs s’alignent', () => {
-    expect(cadreFiltre(false)).toContain('border-2')
+    expect(cadreFiltre(false)).toContain('border-[3px]')
     // …mais ne se ressemblent pas : c'est le défaut qu'on corrigeait.
     expect(cadreFiltre(true)).not.toBe(cadreFiltre(false))
   })
@@ -41,7 +41,8 @@ describe('fermer reste reconnaissable', () => {
     // se ressembler.
     expect(CLASSE_FERMER).toContain('border')
     expect(CLASSE_FERMER).toContain('bg-white')
-    expect(CLASSE_FERMER).not.toContain('bg-charbon')
+    // Au repos seulement : le survol, lui, se remplit (2.0).
+    expect(CLASSE_FERMER).not.toMatch(/(^|\s)bg-charbon(\s|$)/)
   })
 })
 

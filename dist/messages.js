@@ -1,7 +1,7 @@
 import { jsx as _jsx } from "react/jsx-runtime";
 const BORDURE = {
     refus: 'border-red-600 bg-white',
-    vigilance: "border-charbon bg-white before:content-['⚠_']",
+    vigilance: 'border-red-600 bg-white',
     ok: 'border-sable bg-sable/40',
 };
 export const classeBandeau = (ton) => `rounded-lg border-2 px-3 py-2 text-sm font-semibold ${BORDURE[ton]}`;
@@ -10,11 +10,10 @@ export function Bandeau({ ton, children, className = '' }) {
 }
 /**
  * Une valeur hors repère — un ratio au-dessus du seuil, un prix trop vieux,
- * un chiffre qui manque : charbon gras, précédé du glyphe ⚠. Aucune couleur :
- * l'orange n'est pas dans la palette. Le mot qui explique va à côté ; le
- * glyphe seul ne dit pas pourquoi.
+ * un chiffre qui manque : ⚠ rouge devant, en gras. Le mot qui explique va à
+ * côté ; la couleur seule ne dit rien.
  */
-export const CLASSE_HORS_REPERE = "font-bold text-charbon before:content-['⚠_']";
+export const CLASSE_HORS_REPERE = "font-bold text-red-700 before:content-['⚠_']";
 /** Un état vide qui parle : une phrase centrée, qui dit quoi faire ou pourquoi c'est vide. */
 export function Vide({ children, className = '' }) {
     return _jsx("p", { className: `px-3 py-6 text-center text-sm text-charbon/60 ${className}`.trim(), children: children });
