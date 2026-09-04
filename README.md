@@ -20,7 +20,8 @@ utilisateur ce qu'il savait déjà.
 ## Ce qu'il contient
 
 - **La palette** (`theme.css`) — charbon, sable, crème, jaune BāM, vert OLLā.
-  Elle vient du site : ne jamais inventer de couleur.
+  Elle vient du site : ne jamais inventer de couleur. **Le sable est la
+  couleur de Mārs Clūb** (04/09/2026), celle du périmètre entier en aplat.
 - **La barre de filtres** — `ZoneFiltres`, `classeFiltre`, `classeFiltreLieu`,
   `classeActionFiltre`.
 
