@@ -40,6 +40,11 @@ Arbitrages Roch du 20/08/2026 :
 
 Et une règle de place : **les filtres à gauche, la droite aux actions.**
 
+**Le périmètre entier a sa couleur aussi : le sable** (Roch, 04/09/2026).
+`classeFiltreLieu('mc', actif)` et `<PastilleLieu lieu="mc" />` le rendent
+comme les deux maisons, en aplat sable — sans lui, « 🏡 MC » tranchait trop
+à côté du jaune et du vert.
+
 **Le périmètre entier s'écrit « 🏡 MC »** (`MAISON_FILTRE`), jamais
 « Mārs Clūb », dans un filtre et sur la ligne de total qui lui répond
 (règle Roch, 04/09/2026). Le nom entier faisait passer une barre de filtres

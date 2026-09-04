@@ -25,7 +25,8 @@
  * rapide de l'outil, et il vaut sur tous les écrans.
  */
 
-export type LieuFiltre = 'bam' | 'olla'
+/** Un filtre d'enseigne : une maison, ou le périmètre entier (`mc`, en sable). */
+export type LieuFiltre = 'bam' | 'olla' | 'mc'
 
 /** Le signal d'état, commun à tous les filtres. */
 export const cadreFiltre = (actif: boolean) =>
@@ -37,7 +38,11 @@ export const classeFiltre = (actif: boolean) =>
 
 /** Un filtre d'enseigne, qui porte sa couleur. */
 export const classeFiltreLieu = (lieu: LieuFiltre, actif: boolean) =>
-  `rounded-lg px-2.5 py-1 font-bold ${lieu === 'bam' ? 'bg-jaune-bam' : 'bg-vert-olla'} ${cadreFiltre(actif)}`
+  // Le périmètre entier porte le sable (Roch, 04/09/2026 : sans aplat,
+  // « 🏡 MC » tranchait trop à côté des deux maisons).
+  `rounded-lg px-2.5 py-1 font-bold ${
+    lieu === 'bam' ? 'bg-jaune-bam' : lieu === 'olla' ? 'bg-vert-olla' : 'bg-sable'
+  } ${cadreFiltre(actif)}`
 
 /** Une action DANS la barre de filtres — retirer les filtres, par exemple. */
 export const classeActionFiltre =

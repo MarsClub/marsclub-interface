@@ -11,6 +11,9 @@ import {
   classeOnglet,
   COULEUR_LIEU,
   LIBELLE_LIEU,
+  LIBELLE_MAISON,
+  MAISON_FILTRE,
+  classeFiltreLieu,
 } from './index.js'
 
 describe('les trois tons de message', () => {
@@ -74,5 +77,14 @@ describe('la pastille de lieu a deux variantes, toutes deux permises', () => {
     // La variante se voit au rendu ; ici on fixe ce qui ne bouge pas : le
     // texte charbon, et les deux couleurs réservées au fond ou au liseré.
     expect(classeAplatLieu('bam')).not.toContain('text-')
+  })
+})
+
+describe('le périmètre entier', () => {
+  it('a son aplat aussi : le sable, jamais le charbon (04/09/2026)', () => {
+    expect(classeAplatLieu('mc')).toBe('bg-sable')
+    expect(classeFiltreLieu('mc', true)).toContain('bg-sable')
+    expect(classeFiltreLieu('mc', true)).not.toContain('bg-charbon')
+    expect(LIBELLE_MAISON.mc).toBe(MAISON_FILTRE)
   })
 })

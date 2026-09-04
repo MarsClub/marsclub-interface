@@ -24,7 +24,8 @@
  * Les enseignes gardent leur couleur de marque — c'est le repère le plus
  * rapide de l'outil, et il vaut sur tous les écrans.
  */
-export type LieuFiltre = 'bam' | 'olla';
+/** Un filtre d'enseigne : une maison, ou le périmètre entier (`mc`, en sable). */
+export type LieuFiltre = 'bam' | 'olla' | 'mc';
 /** Le signal d'état, commun à tous les filtres. */
 export declare const cadreFiltre: (actif: boolean) => "border-2 border-charbon" | "border-2 border-charbon/15 hover:border-charbon/40";
 /** Un filtre ordinaire : Salle, Cuisine, Personne, Mārs Clūb… */

@@ -4,7 +4,10 @@ export const cadreFiltre = (actif) => actif ? 'border-2 border-charbon' : 'borde
 /** Un filtre ordinaire : Salle, Cuisine, Personne, Mārs Clūb… */
 export const classeFiltre = (actif) => `rounded-lg bg-white px-2.5 py-1 font-semibold ${cadreFiltre(actif)}`;
 /** Un filtre d'enseigne, qui porte sa couleur. */
-export const classeFiltreLieu = (lieu, actif) => `rounded-lg px-2.5 py-1 font-bold ${lieu === 'bam' ? 'bg-jaune-bam' : 'bg-vert-olla'} ${cadreFiltre(actif)}`;
+export const classeFiltreLieu = (lieu, actif) => 
+// Le périmètre entier porte le sable (Roch, 04/09/2026 : sans aplat,
+// « 🏡 MC » tranchait trop à côté des deux maisons).
+`rounded-lg px-2.5 py-1 font-bold ${lieu === 'bam' ? 'bg-jaune-bam' : lieu === 'olla' ? 'bg-vert-olla' : 'bg-sable'} ${cadreFiltre(actif)}`;
 /** Une action DANS la barre de filtres — retirer les filtres, par exemple. */
 export const classeActionFiltre = 'rounded-lg border-2 border-charbon/15 bg-white px-2 py-1 font-semibold hover:border-charbon';
 /** La zone qui les contient. */
