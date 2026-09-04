@@ -125,7 +125,7 @@ recopiés à la main. Chaque motif de la charte vit désormais ici, une fois :
 | Bloc de chiffre | `Kpi` | intitulé en petites capitales, chiffre en Atma, `alerte` en orange texte |
 | Messages | `Bandeau`, `classeBandeau`, `Vide` | trois tons : refus (rouge), vigilance (orange), ok (sable) — jamais de vert |
 | Valeur hors repère | `CLASSE_HORS_REPERE` | UNE nuance d'orange, en texte, jamais en aplat |
-| Actions | `CLASSE_PRINCIPAL`, `CLASSE_ACQUIS`, `CLASSE_TERTIAIRE`, `CLASSE_VIDE`, `CLASSE_NAV`, `BarreActions` | quatre poids, un seul principal par zone, le destructif isolé à gauche |
+| Actions | `CLASSE_PRINCIPAL`, `CLASSE_PRINCIPAL_TELEPHONE`, `CLASSE_ACQUIS`, `CLASSE_TERTIAIRE`, `CLASSE_VIDE`, `CLASSE_NAV`, `classeBascule`, `BarreActions` | quatre poids, un seul principal par zone, le destructif isolé à gauche ; une bascule à choix se dit en charbon, un filtre par son cadre |
 | Champs | `CLASSE_CHAMP`, `Libelle`, `CLASSE_INTITULE` | fond blanc, intitulé au-dessus |
 | Aide | `Aide` | l'explication invariable derrière un « ? », lisible au doigt — jamais un `title=` seul |
 

@@ -1,6 +1,6 @@
 {
   "name": "marsclub-interface",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Les éléments d'interface communs aux outils internes Mārs Clūb — une seule ergonomie pour Hora, Fama et les suivants.",
   "license": "UNLICENSED",
   "type": "module",

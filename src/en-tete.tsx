@@ -37,7 +37,7 @@ export function EnTete({
         <span className="rounded-lg bg-charbon px-2.5 py-1 font-display text-lg font-semibold text-creme">{badge}</span>
       )}
       <div className="font-display text-2xl font-semibold">{libelle}</div>
-      {(precedent || suivant) && (
+      {(precedent || suivant || present) && (
         <div className="flex items-center gap-1">
           {precedent && (
             <Lien href={precedent} className={CLASSE_NAV}>
@@ -49,6 +49,8 @@ export function EnTete({
               ›
             </Lien>
           )}
+          {/* Le retour au présent tient seul : en bout de fenêtre navigable
+              les chevrons peuvent manquer, pas le chemin du retour. */}
           {present && (
             <Lien href={present.href} className={`ml-1 ${CLASSE_NAV} text-sm`}>
               {present.libelle}
