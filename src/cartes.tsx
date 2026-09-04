@@ -72,7 +72,7 @@ export function Kpi({
   detail?: string
   /** La valeur de l'autre maison, en plus petit. */
   echo?: string
-  /** Hors repère : le chiffre passe en orange, seule couleur de vigilance sur une valeur. */
+  /** Hors repère : le chiffre garde sa couleur et prend le glyphe ⚠ — l'orange n'est pas dans la palette. */
   alerte?: boolean
   /** L'explication invariable, derrière un « ? ». */
   aide?: string
@@ -84,7 +84,7 @@ export function Kpi({
         {libelle}
         {aide && <Aide texte={aide} />}
       </div>
-      <div className={`font-display text-lg font-semibold md:text-xl ${alerte ? 'text-orange-700' : ''}`}>{valeur}</div>
+      <div className={`font-display text-lg font-semibold md:text-xl ${alerte ? "before:content-['⚠_']" : ''}`}>{valeur}</div>
       {detail && <div className="text-[10px] leading-tight tabular-nums text-charbon/50 md:text-xs">{detail}</div>}
       {echo && <div className="text-[10px] leading-tight tabular-nums text-charbon/45 md:text-xs">{echo}</div>}
     </div>

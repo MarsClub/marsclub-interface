@@ -20,13 +20,15 @@ describe('les trois tons de message', () => {
       expect(classeBandeau(ton)).not.toMatch(/green|vert/)
     }
     expect(classeBandeau('refus')).toContain('border-red-600')
-    expect(classeBandeau('vigilance')).toContain('border-orange-400')
+    expect(classeBandeau('vigilance')).toContain('border-charbon')
+    expect(classeBandeau('vigilance')).toContain('⚠')
     expect(classeBandeau('ok')).toContain('border-sable')
   })
 
-  it('l’orange d’une valeur hors repère est en texte, une seule nuance, jamais un aplat', () => {
-    expect(CLASSE_HORS_REPERE).toContain('text-orange-700')
-    expect(CLASSE_HORS_REPERE).not.toContain('bg-')
+  it('une valeur hors repère se dit en charbon gras avec ⚠ — l’orange n’est pas dans la palette', () => {
+    expect(CLASSE_HORS_REPERE).toContain('⚠')
+    expect(CLASSE_HORS_REPERE).not.toMatch(/orange/)
+    expect(classeBandeau('vigilance')).not.toMatch(/orange/)
   })
 })
 

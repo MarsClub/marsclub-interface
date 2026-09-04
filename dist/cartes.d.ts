@@ -38,7 +38,7 @@ export declare function Kpi({ libelle, valeur, detail, echo, alerte, aide, class
     detail?: string;
     /** La valeur de l'autre maison, en plus petit. */
     echo?: string;
-    /** Hors repère : le chiffre passe en orange, seule couleur de vigilance sur une valeur. */
+    /** Hors repère : le chiffre garde sa couleur et prend le glyphe ⚠ — l'orange n'est pas dans la palette. */
     alerte?: boolean;
     /** L'explication invariable, derrière un « ? ». */
     aide?: string;
