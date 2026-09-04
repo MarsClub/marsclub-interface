@@ -120,7 +120,7 @@ recopiés à la main. Chaque motif de la charte vit désormais ici, une fois :
 |---|---|---|
 | En-tête daté | `EnTete` | `[badge] [libellé] [‹ ›] [retour au présent] [cartouche]` — jamais un titre de page |
 | Onglets | `Onglets`, `classeOnglet` | Atma soulignés ; rien sous deux onglets |
-| Pastille de lieu | `PastilleLieu`, `LIBELLE_LIEU`, `COULEUR_LIEU`, `classeAplatLieu` | jaune et vert en aplat seulement, texte charbon |
+| Pastille de lieu | `PastilleLieu` (`variante` aplat / neutre), `LIBELLE_LIEU`, `COULEUR_LIEU`, `classeAplatLieu` | jaune et vert en aplat seulement, texte charbon. **Aplat** par défaut sur les outils internes, **neutre** (nom sur blanc, couleur en liseré) par défaut sur les dispositifs publics — deux défauts, pas des interdits (Roch, 04/09/2026) |
 | Carte, carte de section, sous-section | `CLASSE_CARTE`, `CarteSection`, `SousSection` | bande de titre sable ; un tableau défile dans son `overflow-x-auto` |
 | Bloc de chiffre | `Kpi` | intitulé en petites capitales, chiffre en Atma, `alerte` en orange texte |
 | Messages | `Bandeau`, `classeBandeau`, `Vide` | trois tons : refus (cadre rouge), vigilance (cadre charbon, ⚠), ok (sable) — l'orange n'est pas dans la palette, jamais de vert |

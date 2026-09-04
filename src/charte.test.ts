@@ -68,3 +68,11 @@ describe('onglets et champs', () => {
     expect(CLASSE_CHAMP).toContain('bg-white')
   })
 })
+
+describe('la pastille de lieu a deux variantes, toutes deux permises', () => {
+  it('le nom reste charbon dans les deux — jamais une couleur de marque en texte', () => {
+    // La variante se voit au rendu ; ici on fixe ce qui ne bouge pas : le
+    // texte charbon, et les deux couleurs réservées au fond ou au liseré.
+    expect(classeAplatLieu('bam')).not.toContain('text-')
+  })
+})
