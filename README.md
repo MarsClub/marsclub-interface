@@ -109,6 +109,30 @@ import Link from 'next/link'
 <BoutonFermer href="/planning" Lien={Link} />
 ```
 
+## La charte, en composants (04/09/2026)
+
+La revue de cohérence du 04/09/2026 a compté, dans Hora seul : six cartes
+KPI, six pastilles de lieu, six barres d'onglets, huit cartes de section,
+neuf en-têtes datés, onze gabarits de champ et neuf teintes de bandeau — tous
+recopiés à la main. Chaque motif de la charte vit désormais ici, une fois :
+
+| Motif | Export | Règle |
+|---|---|---|
+| En-tête daté | `EnTete` | `[badge] [libellé] [‹ ›] [retour au présent] [cartouche]` — jamais un titre de page |
+| Onglets | `Onglets`, `classeOnglet` | Atma soulignés ; rien sous deux onglets |
+| Pastille de lieu | `PastilleLieu`, `LIBELLE_LIEU`, `COULEUR_LIEU`, `classeAplatLieu` | jaune et vert en aplat seulement, texte charbon |
+| Carte, carte de section, sous-section | `CLASSE_CARTE`, `CarteSection`, `SousSection` | bande de titre sable ; un tableau défile dans son `overflow-x-auto` |
+| Bloc de chiffre | `Kpi` | intitulé en petites capitales, chiffre en Atma, `alerte` en orange texte |
+| Messages | `Bandeau`, `classeBandeau`, `Vide` | trois tons : refus (rouge), vigilance (orange), ok (sable) — jamais de vert |
+| Valeur hors repère | `CLASSE_HORS_REPERE` | UNE nuance d'orange, en texte, jamais en aplat |
+| Actions | `CLASSE_PRINCIPAL`, `CLASSE_ACQUIS`, `CLASSE_TERTIAIRE`, `CLASSE_VIDE`, `CLASSE_NAV`, `BarreActions` | quatre poids, un seul principal par zone, le destructif isolé à gauche |
+| Champs | `CLASSE_CHAMP`, `Libelle`, `CLASSE_INTITULE` | fond blanc, intitulé au-dessus |
+| Aide | `Aide` | l'explication invariable derrière un « ? », lisible au doigt — jamais un `title=` seul |
+
+**Un outil qui définit localement l'un de ces motifs a tort**, même à
+l'identique : la copie diverge, c'est toute l'histoire de ce paquet. Un
+besoin que le motif ne couvre pas se discute ici et profite à tous.
+
 ## Le compteur à palettes
 
 `CompteurSolari` — l'affichage de gare, celui qui fait claquer les caractères
