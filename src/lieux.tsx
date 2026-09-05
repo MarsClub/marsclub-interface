@@ -89,6 +89,24 @@ export function libelleZone(equipe: Zone): string {
 export const CLASSE_ZONE = 'text-sm font-bold uppercase tracking-wide text-charbon'
 
 /**
+ * La couleur d'un shift, dérivée du lieu et de la zone (05/09/2026) —
+ * jamais un choix manuel par shift-type. Roch, tranchant entre une couleur
+ * de zone universelle et une déclinaison par lieu : « une déclinaison […]
+ * qu'on dérive du BāM comme d'OLLā » — une couleur de zone indépendante du
+ * lieu choquerait juste à côté de l'aplat du bloc de lieu, dans la grille,
+ * qui reste jaune ou vert. Cuisine porte l'aplat plein du lieu ; Salle une
+ * teinte plus claire du même ton, jamais un ton étranger. Management reste
+ * neutre, sable — ce sont des heures travaillées comme les autres, pas un
+ * troisième lieu (§13 de la spec).
+ */
+const SALLE_ECLAIRCIE: Record<Lieu, string> = { bam: '#ffe88b', olla: '#a1ee91' }
+const SABLE = '#d6cdaa'
+export function couleurShift(lieu: Lieu, equipe: Zone): string {
+  if (equipe === 'management') return SABLE
+  return equipe === 'cuisine' ? COULEUR_LIEU[lieu] : SALLE_ECLAIRCIE[lieu]
+}
+
+/**
  * La cellule de lieu fusionnée (05/09/2026) : le même aplat que
  * `PastilleLieu`, pensée pour couvrir plusieurs rangées de zone d'un seul
  * tenant — la matrice du planning, un bloc de revue groupé. Le nom de la

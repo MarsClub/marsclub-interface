@@ -61,6 +61,7 @@ export type Zone = 'salle' | 'cuisine' | 'management';
 export declare function libelleZone(equipe: Zone): string;
 /** La mise en avant d'un en-tête de zone — nettement plus visible qu'un intitulé courant (05/09/2026). */
 export declare const CLASSE_ZONE = "text-sm font-bold uppercase tracking-wide text-charbon";
+export declare function couleurShift(lieu: Lieu, equipe: Zone): string;
 /**
  * La cellule de lieu fusionnée (05/09/2026) : le même aplat que
  * `PastilleLieu`, pensée pour couvrir plusieurs rangées de zone d'un seul

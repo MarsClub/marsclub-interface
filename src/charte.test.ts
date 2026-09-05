@@ -15,6 +15,7 @@ import {
   MAISON_FILTRE,
   classeFiltreLieu,
   libelleZone,
+  couleurShift,
 } from './index.js'
 
 describe('les trois tons de message', () => {
@@ -94,5 +95,22 @@ describe('la zone se dérive de l’équipe, jamais d’un shift-type nommé (05
     expect(libelleZone('cuisine')).toBe('Cuisine')
     expect(libelleZone('salle')).toBe('Salle')
     expect(libelleZone('management')).toBe('Management')
+  })
+})
+
+describe('la couleur d’un shift se dérive du lieu et de la zone (05/09/2026)', () => {
+  it('la cuisine porte l’aplat plein du lieu', () => {
+    expect(couleurShift('bam', 'cuisine')).toBe(COULEUR_LIEU.bam)
+    expect(couleurShift('olla', 'cuisine')).toBe(COULEUR_LIEU.olla)
+  })
+
+  it('la salle porte une teinte plus claire du MÊME lieu — jamais un ton étranger', () => {
+    expect(couleurShift('bam', 'salle')).not.toBe(COULEUR_LIEU.bam)
+    expect(couleurShift('bam', 'salle')).not.toBe(couleurShift('olla', 'salle'))
+  })
+
+  it('le management reste neutre, sable, quel que soit le lieu', () => {
+    expect(couleurShift('bam', 'management')).toBe(couleurShift('olla', 'management'))
+    expect(couleurShift('bam', 'management')).toBe('#d6cdaa')
   })
 })
