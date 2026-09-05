@@ -22,18 +22,26 @@ export function BoutonConfirme({
   question,
   className,
   title,
+  formAction,
   children,
 }: {
   /** La conséquence, en une phrase. C'est elle qu'on lit, pas le bouton. */
   question: string
   className?: string
   title?: string
+  /**
+   * Pour ce bouton SEUL, dans un formulaire qui en porte plusieurs (05/09/2026)
+   * — la même chose que l'attribut HTML natif, à qui elle est transmise telle
+   * quelle : le formulaire garde son action par défaut pour les autres boutons.
+   */
+  formAction?: (formData: FormData) => void
   children: React.ReactNode
 }) {
   return (
     <button
       title={title}
       className={className}
+      formAction={formAction}
       onClick={(evenement) => {
         // Refuser, c'est empêcher la soumission : l'action serveur n'est
         // jamais appelée, rien ne part.

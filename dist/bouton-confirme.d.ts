@@ -16,10 +16,16 @@
  * elle est native sur iPad, ne dépend d'aucun état, et ne peut pas laisser
  * l'écran à moitié bloqué si quelque chose échoue à côté.
  */
-export declare function BoutonConfirme({ question, className, title, children, }: {
+export declare function BoutonConfirme({ question, className, title, formAction, children, }: {
     /** La conséquence, en une phrase. C'est elle qu'on lit, pas le bouton. */
     question: string;
     className?: string;
     title?: string;
+    /**
+     * Pour ce bouton SEUL, dans un formulaire qui en porte plusieurs (05/09/2026)
+     * — la même chose que l'attribut HTML natif, à qui elle est transmise telle
+     * quelle : le formulaire garde son action par défaut pour les autres boutons.
+     */
+    formAction?: (formData: FormData) => void;
     children: React.ReactNode;
 }): import("react").JSX.Element;

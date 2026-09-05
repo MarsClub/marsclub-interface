@@ -18,8 +18,8 @@ import { jsx as _jsx } from "react/jsx-runtime";
  * elle est native sur iPad, ne dépend d'aucun état, et ne peut pas laisser
  * l'écran à moitié bloqué si quelque chose échoue à côté.
  */
-export function BoutonConfirme({ question, className, title, children, }) {
-    return (_jsx("button", { title: title, className: className, onClick: (evenement) => {
+export function BoutonConfirme({ question, className, title, formAction, children, }) {
+    return (_jsx("button", { title: title, className: className, formAction: formAction, onClick: (evenement) => {
             // Refuser, c'est empêcher la soumission : l'action serveur n'est
             // jamais appelée, rien ne part.
             if (!window.confirm(question))
