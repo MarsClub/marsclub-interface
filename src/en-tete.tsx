@@ -20,6 +20,7 @@ export function EnTete({
   present,
   children,
   Lien = 'a',
+  compact = false,
 }: {
   /** « S36 », « 30 j », « Août 2026 » — charbon, Atma. */
   badge?: string
@@ -31,15 +32,26 @@ export function EnTete({
   /** La cartouche de filtres, puis ce qui se pose à droite. */
   children?: React.ReactNode
   Lien?: React.ElementType
+  /**
+   * Tient sur une seule ligne, texte réduit (05/09/2026) — pour se glisser
+   * dans un espace étroit : un en-tête mobile, une ligne fusionnée avec un
+   * menu. Le badge et le libellé perdent un cran de taille, l'ensemble ne
+   * retombe plus à la ligne.
+   */
+  compact?: boolean
 }) {
   return (
-    <div className="flex flex-wrap items-center gap-3">
+    <div className={`flex items-center ${compact ? 'flex-nowrap gap-2' : 'flex-wrap gap-3'}`}>
       {badge && (
-        <span className="rounded-lg bg-sable px-2.5 py-1 font-display text-lg font-semibold text-charbon">{badge}</span>
+        <span
+          className={`shrink-0 rounded-lg bg-sable px-2.5 py-1 font-display font-semibold text-charbon ${compact ? 'text-sm' : 'text-lg'}`}
+        >
+          {badge}
+        </span>
       )}
-      <div className="font-display text-2xl font-semibold">{libelle}</div>
+      <div className={`min-w-0 truncate font-display font-semibold ${compact ? 'text-base' : 'text-2xl'}`}>{libelle}</div>
       {(precedent || suivant || present) && (
-        <div className="flex items-center gap-1">
+        <div className="flex shrink-0 items-center gap-1">
           {precedent && (
             <Lien href={precedent} className={CLASSE_NAV}>
               ‹

@@ -10,7 +10,7 @@
  *
  * `Lien` est injectable, comme pour `BoutonFermer`.
  */
-export declare function EnTete({ badge, libelle, precedent, suivant, present, children, Lien, }: {
+export declare function EnTete({ badge, libelle, precedent, suivant, present, children, Lien, compact, }: {
     /** « S36 », « 30 j », « Août 2026 » — charbon, Atma. */
     badge?: string;
     libelle: React.ReactNode;
@@ -24,4 +24,11 @@ export declare function EnTete({ badge, libelle, precedent, suivant, present, ch
     /** La cartouche de filtres, puis ce qui se pose à droite. */
     children?: React.ReactNode;
     Lien?: React.ElementType;
+    /**
+     * Tient sur une seule ligne, texte réduit (05/09/2026) — pour se glisser
+     * dans un espace étroit : un en-tête mobile, une ligne fusionnée avec un
+     * menu. Le badge et le libellé perdent un cran de taille, l'ensemble ne
+     * retombe plus à la ligne.
+     */
+    compact?: boolean;
 }): import("react").JSX.Element;
