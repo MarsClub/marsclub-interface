@@ -14,6 +14,7 @@ import {
   LIBELLE_MAISON,
   MAISON_FILTRE,
   classeFiltreLieu,
+  libelleZone,
 } from './index.js'
 
 describe('les trois tons de message', () => {
@@ -85,5 +86,19 @@ describe('le périmètre entier', () => {
     expect(classeFiltreLieu('mc', true)).toContain('bg-sable')
     expect(classeFiltreLieu('mc', true)).not.toContain('bg-charbon')
     expect(LIBELLE_MAISON.mc).toBe(MAISON_FILTRE)
+  })
+})
+
+describe('la zone se dérive de l’équipe et de la période, jamais d’un shift-type nommé (05/09/2026)', () => {
+  it('cuisine et salle portent leur emoji, management n’en porte pas', () => {
+    expect(libelleZone('cuisine')).toBe('Cuisine 🧑🏻‍🍳')
+    expect(libelleZone('management')).toBe('Management')
+    expect(libelleZone('management', 'soiree')).toBe('Management')
+  })
+
+  it('la salle se distingue journée/soirée par le seul emoji — jamais un nom différent', () => {
+    expect(libelleZone('salle')).toBe('Salle ☀️')
+    expect(libelleZone('salle', 'journee')).toBe('Salle ☀️')
+    expect(libelleZone('salle', 'soiree')).toBe('Salle 🌙')
   })
 })
