@@ -27,31 +27,32 @@ export function PastilleLieu({ lieu, variante = 'aplat', className = '', }) {
     return (_jsx("span", { className: `rounded px-1.5 py-0.5 text-xs font-semibold text-charbon ${fond} ${className}`.trim(), children: LIBELLE_MAISON[lieu] }));
 }
 /**
- * Le libellé d'une zone, emoji compris : Cuisine 🧑🏻‍🍳, Salle ☀️ le jour /
- * 🌙 le soir, Management sans emoji (règle CLAUDE.md — le hors-service n'a
- * pas de repère visuel, c'est un mot). Une seule fois par rangée ou par
- * sous-groupe, jamais répété colonne par colonne.
+ * Le libellé d'une zone (05/09/2026, revu le même jour : « supprime les
+ * emoji de salle et cuisine ») — un mot, jamais une icône. Une seule fois
+ * par rangée ou par sous-groupe, jamais répété colonne par colonne.
  */
-export function libelleZone(equipe, periode) {
+export function libelleZone(equipe) {
     if (equipe === 'management')
         return 'Management';
     if (equipe === 'cuisine')
-        return 'Cuisine 🧑🏻‍🍳';
-    return periode === 'soiree' ? 'Salle 🌙' : 'Salle ☀️';
+        return 'Cuisine';
+    return 'Salle';
 }
+/** La mise en avant d'un en-tête de zone — nettement plus visible qu'un intitulé courant (05/09/2026). */
+export const CLASSE_ZONE = 'text-sm font-bold uppercase tracking-wide text-charbon';
 /**
  * La cellule de lieu fusionnée (05/09/2026) : le même aplat que
  * `PastilleLieu`, pensée pour couvrir plusieurs rangées de zone d'un seul
  * tenant — la matrice du planning, un bloc de revue groupé. Le nom de la
  * maison s'y lit une fois par bloc, jamais ligne à ligne.
  *
- * `vertical` tourne le texte à 90° pour une colonne étroite fusionnée par
- * `grid-row: span N` : c'est l'appelant qui calcule N (le nombre de rangées
- * de zone du bloc) et le pose en `style` — cette cellule ne fait que l'aplat
- * et le texte.
+ * ⚠️ **Toujours à l'horizontale** (Roch, 05/09/2026 : « écriture verticale
+ * interdite ») — même fusionnée sur plusieurs rangées, dans une colonne
+ * étroite. La colonne qui la porte doit être assez large pour « BāM »/« OLLā »
+ * en toutes lettres ; ce n'est plus à cette cellule de s'y adapter en pivotant.
  */
-export function BlocLieu({ lieu, vertical = false, className = '', style, }) {
-    return (_jsx("div", { style: style, className: `flex items-center justify-center rounded-lg px-1 py-1 text-center text-xs font-bold text-charbon ${classeAplatLieu(lieu)} ${vertical ? '[writing-mode:vertical-rl]' : ''} ${className}`.trim(), children: LIBELLE_LIEU[lieu] }));
+export function BlocLieu({ lieu, className = '', style, }) {
+    return (_jsx("div", { style: style, className: `flex items-center justify-center rounded-lg px-1 py-1 text-center text-sm font-bold text-charbon ${classeAplatLieu(lieu)} ${className}`.trim(), children: LIBELLE_LIEU[lieu] }));
 }
 /**
  * Le liseré bicolore fin entre deux blocs de lieu (05/09/2026) : une bande

@@ -89,16 +89,10 @@ describe('le périmètre entier', () => {
   })
 })
 
-describe('la zone se dérive de l’équipe et de la période, jamais d’un shift-type nommé (05/09/2026)', () => {
-  it('cuisine et salle portent leur emoji, management n’en porte pas', () => {
-    expect(libelleZone('cuisine')).toBe('Cuisine 🧑🏻‍🍳')
+describe('la zone se dérive de l’équipe, jamais d’un shift-type nommé (05/09/2026, sans emoji depuis le même jour)', () => {
+  it('un mot, jamais une icône', () => {
+    expect(libelleZone('cuisine')).toBe('Cuisine')
+    expect(libelleZone('salle')).toBe('Salle')
     expect(libelleZone('management')).toBe('Management')
-    expect(libelleZone('management', 'soiree')).toBe('Management')
-  })
-
-  it('la salle se distingue journée/soirée par le seul emoji — jamais un nom différent', () => {
-    expect(libelleZone('salle')).toBe('Salle ☀️')
-    expect(libelleZone('salle', 'journee')).toBe('Salle ☀️')
-    expect(libelleZone('salle', 'soiree')).toBe('Salle 🌙')
   })
 })

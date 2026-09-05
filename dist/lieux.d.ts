@@ -53,30 +53,27 @@ export declare function PastilleLieu({ lieu, variante, className, }: {
  * qui mélangeait lieu et zone dans une seule chaîne, recopiée ligne à ligne).
  */
 export type Zone = 'salle' | 'cuisine' | 'management';
-/** La période d'un shift, dérivée de l'horaire — jamais stockée. */
-export type PeriodeShift = 'journee' | 'soiree';
 /**
- * Le libellé d'une zone, emoji compris : Cuisine 🧑🏻‍🍳, Salle ☀️ le jour /
- * 🌙 le soir, Management sans emoji (règle CLAUDE.md — le hors-service n'a
- * pas de repère visuel, c'est un mot). Une seule fois par rangée ou par
- * sous-groupe, jamais répété colonne par colonne.
+ * Le libellé d'une zone (05/09/2026, revu le même jour : « supprime les
+ * emoji de salle et cuisine ») — un mot, jamais une icône. Une seule fois
+ * par rangée ou par sous-groupe, jamais répété colonne par colonne.
  */
-export declare function libelleZone(equipe: Zone, periode?: PeriodeShift): string;
+export declare function libelleZone(equipe: Zone): string;
+/** La mise en avant d'un en-tête de zone — nettement plus visible qu'un intitulé courant (05/09/2026). */
+export declare const CLASSE_ZONE = "text-sm font-bold uppercase tracking-wide text-charbon";
 /**
  * La cellule de lieu fusionnée (05/09/2026) : le même aplat que
  * `PastilleLieu`, pensée pour couvrir plusieurs rangées de zone d'un seul
  * tenant — la matrice du planning, un bloc de revue groupé. Le nom de la
  * maison s'y lit une fois par bloc, jamais ligne à ligne.
  *
- * `vertical` tourne le texte à 90° pour une colonne étroite fusionnée par
- * `grid-row: span N` : c'est l'appelant qui calcule N (le nombre de rangées
- * de zone du bloc) et le pose en `style` — cette cellule ne fait que l'aplat
- * et le texte.
+ * ⚠️ **Toujours à l'horizontale** (Roch, 05/09/2026 : « écriture verticale
+ * interdite ») — même fusionnée sur plusieurs rangées, dans une colonne
+ * étroite. La colonne qui la porte doit être assez large pour « BāM »/« OLLā »
+ * en toutes lettres ; ce n'est plus à cette cellule de s'y adapter en pivotant.
  */
-export declare function BlocLieu({ lieu, vertical, className, style, }: {
+export declare function BlocLieu({ lieu, className, style, }: {
     lieu: Lieu;
-    /** Texte vertical, pour une colonne étroite fusionnée sur plusieurs rangées. */
-    vertical?: boolean;
     className?: string;
     style?: React.CSSProperties;
 }): import("react").JSX.Element;
