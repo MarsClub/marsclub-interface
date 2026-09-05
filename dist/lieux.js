@@ -41,6 +41,20 @@ export function libelleZone(equipe) {
 /** La mise en avant d'un en-tête de zone — nettement plus visible qu'un intitulé courant (05/09/2026). */
 export const CLASSE_ZONE = 'text-sm font-bold uppercase tracking-wide text-charbon';
 /**
+ * Le nom d'un shift-type, dérivé du lieu et de la zone (05/09/2026) — plus
+ * de saisie manuelle. Jusqu'ici composé à la main dans le formulaire de
+ * réglages (« BāM 👩🏻‍🍳 »), il finissait par diverger des mots employés
+ * partout ailleurs — le cas qui a fait tomber le badge d'un des deux shifts
+ * de Franck le même jour, la fusion des jours consécutifs comparant des
+ * `shiftTypeId`, jamais ce texte, mais le texte affiché, lui, ne
+ * correspondait déjà plus à ce que la grille disait par ailleurs. Mêmes
+ * mots que `PastilleLieu` et `libelleZone`, jamais recomposés : « BāM
+ * Cuisine », « OLLā Salle », « BāM Management ».
+ */
+export function libelleShift(lieu, equipe) {
+    return `${LIBELLE_LIEU[lieu]} ${libelleZone(equipe)}`;
+}
+/**
  * La couleur d'un shift, dérivée du lieu et de la zone (05/09/2026) —
  * jamais un choix manuel par shift-type. Roch, tranchant entre une couleur
  * de zone universelle et une déclinaison par lieu : « une déclinaison […]

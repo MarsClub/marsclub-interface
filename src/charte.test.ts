@@ -15,6 +15,7 @@ import {
   MAISON_FILTRE,
   classeFiltreLieu,
   libelleZone,
+  libelleShift,
   couleurShift,
 } from './index.js'
 
@@ -95,6 +96,25 @@ describe('la zone se dérive de l’équipe, jamais d’un shift-type nommé (05
     expect(libelleZone('cuisine')).toBe('Cuisine')
     expect(libelleZone('salle')).toBe('Salle')
     expect(libelleZone('management')).toBe('Management')
+  })
+})
+
+describe('le libellé d’un shift se dérive du lieu et de la zone (05/09/2026) — plus de saisie manuelle', () => {
+  it('compose lieu + zone, mêmes mots que partout ailleurs', () => {
+    expect(libelleShift('bam', 'cuisine')).toBe('BāM Cuisine')
+    expect(libelleShift('bam', 'salle')).toBe('BāM Salle')
+    expect(libelleShift('bam', 'management')).toBe('BāM Management')
+    expect(libelleShift('olla', 'cuisine')).toBe('OLLā Cuisine')
+    expect(libelleShift('olla', 'salle')).toBe('OLLā Salle')
+    expect(libelleShift('olla', 'management')).toBe('OLLā Management')
+  })
+
+  it('jamais d’emoji', () => {
+    for (const lieu of ['bam', 'olla'] as const) {
+      for (const equipe of ['cuisine', 'salle', 'management'] as const) {
+        expect(libelleShift(lieu, equipe)).toMatch(/^[\w\sāĀ]+$/u)
+      }
+    }
   })
 })
 
