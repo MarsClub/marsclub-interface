@@ -122,81 +122,74 @@ export function couleurShift(lieu: Lieu, equipe: Zone): string {
 }
 
 /**
- * Un shift, hors de la grille (Roch, 06/09/2026 : « Mes shifts et Pointeuse
- * doivent reprendre nos codes graphiques — là tout est au même niveau visuel
- * et se confond »). Le même bloc que la cellule du planning : l'aplat de
- * `couleurShift` (lieu × zone), l'horaire en petit, la durée en badge sable —
- * ce qui se lit d'un coup d'œil sur la grille se lit pareil sur une liste.
- *
- * ⚠️ **L'aplat ne porte JAMAIS le nom de la maison ni celui de la zone**
- * (Roch, 07/09/2026 : « Salle sur fond vert : interdit ; badge BāM jaune sur
- * fond jaune : interdit »). Sur la grille, le lieu et la zone vivent dans la
- * colonne de gauche — `LieuZone` reprend cette colonne, à poser AVANT le bloc.
- * `titre` est le prénom de la grille ; sans titre (son propre écran), le bloc
- * tient sur une ligne : l'horaire, l'état, la durée en badge.
- * `etat` se pose à côté de l'horaire — « planifié », « réalisé », « en cours ».
+ * Un shift dans une LISTE (Roch, 07/09/2026) — Mes shifts, Pointeuse : « ce
+ * design [la cellule de la grille] vit dans un contexte de vue globale et
+ * pas du tout de liste ». Une ligne, jamais colorée : la pastille de la
+ * maison (son nom, en aplat comme partout dans les outils — pas une couleur
+ * de shift), l'horaire, la durée, puis les icônes (repas, pause) après le
+ * décompte, l'état à droite (« planifié », « réalisé », « en cours »).
+ * La zone ne se dit pas : les gens savent où ils travaillent.
  */
-export function BlocShift({
+export function LigneShift({
   lieu,
-  equipe,
   debut,
   fin,
   duree,
-  titre,
+  icones,
   etat,
+  droite,
   className = '',
 }: {
   lieu: Lieu
-  equipe: Zone
   debut: string
   fin: string
-  /** Déjà formatée (« 6h30 ») — le bloc ne calcule rien. */
+  /** Déjà formatée (« 6h30 ») — la ligne ne calcule rien. */
   duree?: string
-  /** Le prénom, sur la grille ; rien sur son propre écran. Jamais un lieu ni une zone. */
-  titre?: React.ReactNode
+  /** Après la durée : « ⏸️ 🍴 », ce que ce service compte. */
+  icones?: React.ReactNode
   etat?: React.ReactNode
+  /** Tout à droite, après l'état : un bouton compact, une mention. */
+  droite?: React.ReactNode
   className?: string
 }) {
-  const badge = duree ? (
-    <span className="mt-px rounded bg-sable px-1 py-px text-xs font-semibold tabular-nums">{duree}</span>
-  ) : null
-  const avecTitre = titre !== undefined
   return (
-    <div
-      style={{ backgroundColor: couleurShift(lieu, equipe) }}
-      className={`inline-flex min-w-[9rem] flex-col rounded-lg p-1.5 leading-tight text-charbon ${className}`.trim()}
-    >
-      {avecTitre && (
-        <div className="flex items-start justify-between gap-2">
-          <span className="text-[0.95rem] font-bold">{titre}</span>
-          {badge}
-        </div>
-      )}
-      <div className={`flex items-center justify-between gap-2 text-xs tabular-nums ${avecTitre ? 'mt-0.5' : ''}`.trim()}>
-        <span className="text-charbon/75">
-          {debut}–{fin}
-        </span>
-        {etat && <span className="text-charbon/60">{etat}</span>}
-        {!avecTitre && badge}
-      </div>
+    <div className={`flex flex-wrap items-center gap-x-2 gap-y-0.5 py-0.5 text-sm text-charbon tabular-nums ${className}`.trim()}>
+      <PastilleLieu lieu={lieu} />
+      <span className="font-semibold">
+        {debut} – {fin}
+      </span>
+      {duree && <span className="text-charbon/75">{duree}</span>}
+      {icones && <span>{icones}</span>}
+      {etat && <span className="ml-auto text-xs text-charbon/60">{etat}</span>}
+      {droite}
     </div>
   )
 }
 
 /**
- * Le lieu et la zone d'un shift, hors de la grille (07/09/2026) : la colonne
- * de gauche de Planning, telle quelle — le bloc de lieu en aplat (`BlocLieu`),
- * la zone en capitales dans son cadre sable. C'est là, et seulement là, que
- * « BāM » et « Salle » se lisent ; jamais sur l'aplat du shift (Roch, 07/09/2026).
+ * Une journée dans une liste de shifts (Roch, 07/09/2026 : « regrouper les
+ * shifts par jour, même si deux lieux ») : son nom en titre, son total à
+ * droite en petit, ses lignes dessous. Un trait sable entre deux jours.
  */
-export function LieuZone({ lieu, equipe, className = '' }: { lieu: Lieu; equipe: Zone; className?: string }) {
+export function Journee({
+  titre,
+  droite,
+  children,
+  className = '',
+}: {
+  titre: React.ReactNode
+  droite?: React.ReactNode
+  children: React.ReactNode
+  className?: string
+}) {
   return (
-    <span className={`inline-flex items-stretch ${className}`.trim()}>
-      <BlocLieu lieu={lieu} className="px-2" />
-      <span className={`flex items-center rounded-r-lg border-y-2 border-r-2 border-sable bg-sable/25 px-1.5 ${CLASSE_ZONE}`}>
-        {libelleZone(equipe)}
-      </span>
-    </span>
+    <div className={`border-t border-sable px-3 py-2 first:border-t-0 ${className}`.trim()}>
+      <div className="mb-0.5 flex items-baseline justify-between gap-2">
+        <span className="font-bold capitalize">{titre}</span>
+        {droite && <span className="text-xs font-semibold text-charbon/60 tabular-nums">{droite}</span>}
+      </div>
+      {children}
+    </div>
   )
 }
 

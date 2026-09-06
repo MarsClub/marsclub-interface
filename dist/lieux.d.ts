@@ -75,41 +75,36 @@ export declare const CLASSE_ZONE = "text-sm font-bold uppercase tracking-wide te
 export declare function libelleShift(lieu: Lieu, equipe: Zone): string;
 export declare function couleurShift(lieu: Lieu, equipe: Zone): string;
 /**
- * Un shift, hors de la grille (Roch, 06/09/2026 : « Mes shifts et Pointeuse
- * doivent reprendre nos codes graphiques — là tout est au même niveau visuel
- * et se confond »). Le même bloc que la cellule du planning : l'aplat de
- * `couleurShift` (lieu × zone), l'horaire en petit, la durée en badge sable —
- * ce qui se lit d'un coup d'œil sur la grille se lit pareil sur une liste.
- *
- * ⚠️ **L'aplat ne porte JAMAIS le nom de la maison ni celui de la zone**
- * (Roch, 07/09/2026 : « Salle sur fond vert : interdit ; badge BāM jaune sur
- * fond jaune : interdit »). Sur la grille, le lieu et la zone vivent dans la
- * colonne de gauche — `LieuZone` reprend cette colonne, à poser AVANT le bloc.
- * `titre` est le prénom de la grille ; sans titre (son propre écran), le bloc
- * tient sur une ligne : l'horaire, l'état, la durée en badge.
- * `etat` se pose à côté de l'horaire — « planifié », « réalisé », « en cours ».
+ * Un shift dans une LISTE (Roch, 07/09/2026) — Mes shifts, Pointeuse : « ce
+ * design [la cellule de la grille] vit dans un contexte de vue globale et
+ * pas du tout de liste ». Une ligne, jamais colorée : la pastille de la
+ * maison (son nom, en aplat comme partout dans les outils — pas une couleur
+ * de shift), l'horaire, la durée, puis les icônes (repas, pause) après le
+ * décompte, l'état à droite (« planifié », « réalisé », « en cours »).
+ * La zone ne se dit pas : les gens savent où ils travaillent.
  */
-export declare function BlocShift({ lieu, equipe, debut, fin, duree, titre, etat, className, }: {
+export declare function LigneShift({ lieu, debut, fin, duree, icones, etat, droite, className, }: {
     lieu: Lieu;
-    equipe: Zone;
     debut: string;
     fin: string;
-    /** Déjà formatée (« 6h30 ») — le bloc ne calcule rien. */
+    /** Déjà formatée (« 6h30 ») — la ligne ne calcule rien. */
     duree?: string;
-    /** Le prénom, sur la grille ; rien sur son propre écran. Jamais un lieu ni une zone. */
-    titre?: React.ReactNode;
+    /** Après la durée : « ⏸️ 🍴 », ce que ce service compte. */
+    icones?: React.ReactNode;
     etat?: React.ReactNode;
+    /** Tout à droite, après l'état : un bouton compact, une mention. */
+    droite?: React.ReactNode;
     className?: string;
 }): import("react").JSX.Element;
 /**
- * Le lieu et la zone d'un shift, hors de la grille (07/09/2026) : la colonne
- * de gauche de Planning, telle quelle — le bloc de lieu en aplat (`BlocLieu`),
- * la zone en capitales dans son cadre sable. C'est là, et seulement là, que
- * « BāM » et « Salle » se lisent ; jamais sur l'aplat du shift (Roch, 07/09/2026).
+ * Une journée dans une liste de shifts (Roch, 07/09/2026 : « regrouper les
+ * shifts par jour, même si deux lieux ») : son nom en titre, son total à
+ * droite en petit, ses lignes dessous. Un trait sable entre deux jours.
  */
-export declare function LieuZone({ lieu, equipe, className }: {
-    lieu: Lieu;
-    equipe: Zone;
+export declare function Journee({ titre, droite, children, className, }: {
+    titre: React.ReactNode;
+    droite?: React.ReactNode;
+    children: React.ReactNode;
     className?: string;
 }): import("react").JSX.Element;
 /**
