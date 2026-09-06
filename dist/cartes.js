@@ -11,8 +11,8 @@ export const CLASSE_CARTE = 'rounded-xl border-2 border-sable bg-white/50';
  * Hora avant le 04/09/2026. Un tableau à l'intérieur défile dans son propre
  * `overflow-x-auto` — la page ne défile jamais horizontalement.
  */
-export function CarteSection({ titre, sous, droite, children, className = '', }) {
-    return (_jsxs("section", { className: `overflow-hidden ${CLASSE_CARTE} ${className}`.trim(), children: [_jsxs("div", { className: "flex flex-wrap items-baseline gap-2 bg-sable/40 px-3 py-1.5", children: [_jsx("h2", { className: "font-display font-semibold", children: titre }), sous && _jsx("span", { className: "text-xs text-charbon/60", children: sous }), droite && _jsx("span", { className: "ml-auto", children: droite })] }), children] }));
+export function CarteSection({ titre, sous, centre, droite, children, className = '', }) {
+    return (_jsxs("section", { className: `overflow-hidden ${CLASSE_CARTE} ${className}`.trim(), children: [_jsxs("div", { className: `flex items-baseline gap-2 bg-sable/40 px-3 py-1.5 ${centre ? 'flex-nowrap' : 'flex-wrap'}`, children: [_jsx("h2", { className: "shrink-0 font-display font-semibold", children: titre }), sous && _jsx("span", { className: "text-xs text-charbon/60", children: sous }), centre && _jsx("span", { className: "min-w-0 flex-1 truncate text-center font-display font-semibold", children: centre }), droite && _jsx("span", { className: "ml-auto shrink-0", children: droite })] }), children] }));
 }
 /** Une sous-section dans un panneau de fiche : un titre, un contenu. */
 export function SousSection({ titre, children, className = '' }) {

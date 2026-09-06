@@ -122,6 +122,55 @@ export function couleurShift(lieu: Lieu, equipe: Zone): string {
 }
 
 /**
+ * Un shift, hors de la grille (Roch, 06/09/2026 : « Mes shifts et Pointeuse
+ * doivent reprendre nos codes graphiques — là tout est au même niveau visuel
+ * et se confond »). Le même bloc que la cellule du planning : l'aplat de
+ * `couleurShift` (lieu × zone), l'horaire en petit, la durée en badge sable —
+ * ce qui se lit d'un coup d'œil sur la grille se lit pareil sur une liste.
+ * `titre` remplace le prénom de la grille : sur son propre écran, c'est la
+ * zone qu'on lit (« Salle »), ou rien quand le jour précédent la disait déjà.
+ * `etat` se pose à côté de l'horaire — « planifié », « réalisé », « en cours ».
+ */
+export function BlocShift({
+  lieu,
+  equipe,
+  debut,
+  fin,
+  duree,
+  titre,
+  etat,
+  className = '',
+}: {
+  lieu: Lieu
+  equipe: Zone
+  debut: string
+  fin: string
+  /** Déjà formatée (« 6h30 ») — le bloc ne calcule rien. */
+  duree?: string
+  titre?: React.ReactNode
+  etat?: React.ReactNode
+  className?: string
+}) {
+  return (
+    <div
+      style={{ backgroundColor: couleurShift(lieu, equipe) }}
+      className={`inline-flex min-w-[9rem] flex-col rounded-lg p-1.5 leading-tight text-charbon ${className}`.trim()}
+    >
+      <div className="flex items-start justify-between gap-2">
+        <span className="text-[0.95rem] font-bold">{titre ?? ' '}</span>
+        {duree && <span className="mt-px rounded bg-sable px-1 py-px text-xs font-semibold tabular-nums">{duree}</span>}
+      </div>
+      <div className="mt-0.5 flex items-center justify-between gap-2 text-xs tabular-nums">
+        <span className="text-charbon/75">
+          {debut}–{fin}
+        </span>
+        {etat && <span className="text-charbon/60">{etat}</span>}
+      </div>
+    </div>
+  )
+}
+
+/**
  * La cellule de lieu fusionnée (05/09/2026) : le même aplat que
  * `PastilleLieu`, pensée pour couvrir plusieurs rangées de zone d'un seul
  * tenant — la matrice du planning, un bloc de revue groupé. Le nom de la

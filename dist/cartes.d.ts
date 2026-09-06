@@ -9,9 +9,17 @@ export declare const CLASSE_CARTE = "rounded-xl border-2 border-sable bg-white/5
  * Hora avant le 04/09/2026. Un tableau à l'intérieur défile dans son propre
  * `overflow-x-auto` — la page ne défile jamais horizontalement.
  */
-export declare function CarteSection({ titre, sous, droite, children, className, }: {
+export declare function CarteSection({ titre, sous, centre, droite, children, className, }: {
     titre: React.ReactNode;
     sous?: React.ReactNode;
+    /**
+     * La troisième zone de la bande (Roch, 06/09/2026, pour le bloc de la
+     * semaine de Hora : « le numéro de semaine à gauche, les dates au
+     * centre, les flèches à droite ») — centrée entre le titre et `droite`.
+     * Elle prend la place restante : avec elle, la bande ne se replie pas,
+     * elle se partage.
+     */
+    centre?: React.ReactNode;
     /** Ce qui se pose à droite de la bande : un compte, un filtre, une action. */
     droite?: React.ReactNode;
     children: React.ReactNode;

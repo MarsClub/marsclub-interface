@@ -16,12 +16,21 @@ export const CLASSE_CARTE = 'rounded-xl border-2 border-sable bg-white/50'
 export function CarteSection({
   titre,
   sous,
+  centre,
   droite,
   children,
   className = '',
 }: {
   titre: React.ReactNode
   sous?: React.ReactNode
+  /**
+   * La troisième zone de la bande (Roch, 06/09/2026, pour le bloc de la
+   * semaine de Hora : « le numéro de semaine à gauche, les dates au
+   * centre, les flèches à droite ») — centrée entre le titre et `droite`.
+   * Elle prend la place restante : avec elle, la bande ne se replie pas,
+   * elle se partage.
+   */
+  centre?: React.ReactNode
   /** Ce qui se pose à droite de la bande : un compte, un filtre, une action. */
   droite?: React.ReactNode
   children: React.ReactNode
@@ -29,10 +38,11 @@ export function CarteSection({
 }) {
   return (
     <section className={`overflow-hidden ${CLASSE_CARTE} ${className}`.trim()}>
-      <div className="flex flex-wrap items-baseline gap-2 bg-sable/40 px-3 py-1.5">
-        <h2 className="font-display font-semibold">{titre}</h2>
+      <div className={`flex items-baseline gap-2 bg-sable/40 px-3 py-1.5 ${centre ? 'flex-nowrap' : 'flex-wrap'}`}>
+        <h2 className="shrink-0 font-display font-semibold">{titre}</h2>
         {sous && <span className="text-xs text-charbon/60">{sous}</span>}
-        {droite && <span className="ml-auto">{droite}</span>}
+        {centre && <span className="min-w-0 flex-1 truncate text-center font-display font-semibold">{centre}</span>}
+        {droite && <span className="ml-auto shrink-0">{droite}</span>}
       </div>
       {children}
     </section>
