@@ -80,8 +80,13 @@ export declare function couleurShift(lieu: Lieu, equipe: Zone): string;
  * et se confond »). Le même bloc que la cellule du planning : l'aplat de
  * `couleurShift` (lieu × zone), l'horaire en petit, la durée en badge sable —
  * ce qui se lit d'un coup d'œil sur la grille se lit pareil sur une liste.
- * `titre` remplace le prénom de la grille : sur son propre écran, c'est la
- * zone qu'on lit (« Salle »), ou rien quand le jour précédent la disait déjà.
+ *
+ * ⚠️ **L'aplat ne porte JAMAIS le nom de la maison ni celui de la zone**
+ * (Roch, 07/09/2026 : « Salle sur fond vert : interdit ; badge BāM jaune sur
+ * fond jaune : interdit »). Sur la grille, le lieu et la zone vivent dans la
+ * colonne de gauche — `LieuZone` reprend cette colonne, à poser AVANT le bloc.
+ * `titre` est le prénom de la grille ; sans titre (son propre écran), le bloc
+ * tient sur une ligne : l'horaire, l'état, la durée en badge.
  * `etat` se pose à côté de l'horaire — « planifié », « réalisé », « en cours ».
  */
 export declare function BlocShift({ lieu, equipe, debut, fin, duree, titre, etat, className, }: {
@@ -91,8 +96,20 @@ export declare function BlocShift({ lieu, equipe, debut, fin, duree, titre, etat
     fin: string;
     /** Déjà formatée (« 6h30 ») — le bloc ne calcule rien. */
     duree?: string;
+    /** Le prénom, sur la grille ; rien sur son propre écran. Jamais un lieu ni une zone. */
     titre?: React.ReactNode;
     etat?: React.ReactNode;
+    className?: string;
+}): import("react").JSX.Element;
+/**
+ * Le lieu et la zone d'un shift, hors de la grille (07/09/2026) : la colonne
+ * de gauche de Planning, telle quelle — le bloc de lieu en aplat (`BlocLieu`),
+ * la zone en capitales dans son cadre sable. C'est là, et seulement là, que
+ * « BāM » et « Salle » se lisent ; jamais sur l'aplat du shift (Roch, 07/09/2026).
+ */
+export declare function LieuZone({ lieu, equipe, className }: {
+    lieu: Lieu;
+    equipe: Zone;
     className?: string;
 }): import("react").JSX.Element;
 /**
