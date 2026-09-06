@@ -185,7 +185,9 @@ export function Journee({
   return (
     <div className={`border-t border-sable px-3 py-2 first:border-t-0 ${className}`.trim()}>
       <div className="mb-0.5 flex items-baseline justify-between gap-2">
-        <span className="font-bold capitalize">{titre}</span>
+        {/* Pas de `capitalize` : le titre arrive déjà composé (« Aujourd’hui ·
+            mardi 8 septembre », 07/09/2026) — une capitale par mot le défigurerait. */}
+        <span className="font-bold">{titre}</span>
         {droite && <span className="text-xs font-semibold text-charbon/60 tabular-nums">{droite}</span>}
       </div>
       {children}

@@ -90,7 +90,7 @@ export function LigneShift({ lieu, debut, fin, duree, icones, etat, droite, clas
  * droite en petit, ses lignes dessous. Un trait sable entre deux jours.
  */
 export function Journee({ titre, droite, children, className = '', }) {
-    return (_jsxs("div", { className: `border-t border-sable px-3 py-2 first:border-t-0 ${className}`.trim(), children: [_jsxs("div", { className: "mb-0.5 flex items-baseline justify-between gap-2", children: [_jsx("span", { className: "font-bold capitalize", children: titre }), droite && _jsx("span", { className: "text-xs font-semibold text-charbon/60 tabular-nums", children: droite })] }), children] }));
+    return (_jsxs("div", { className: `border-t border-sable px-3 py-2 first:border-t-0 ${className}`.trim(), children: [_jsxs("div", { className: "mb-0.5 flex items-baseline justify-between gap-2", children: [_jsx("span", { className: "font-bold", children: titre }), droite && _jsx("span", { className: "text-xs font-semibold text-charbon/60 tabular-nums", children: droite })] }), children] }));
 }
 /**
  * La cellule de lieu fusionnée (05/09/2026) : le même aplat que
