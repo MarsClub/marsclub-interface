@@ -58,3 +58,23 @@ export declare function Kpi({ libelle, valeur, detail, echo, alerte, aide, class
     aide?: string;
     className?: string;
 }): import("react").JSX.Element;
+/**
+ * Le bloc d'information (Roch, 07/09/2026 : « le format exact du bloc
+ * galet », « toujours le même format en hauteur et en largeur ») — deux
+ * lignes, jamais plus : l'intitulé en petites capitales, son « ? » s'il y a
+ * une explication invariable, un signe tout à droite s'il y a lieu ; puis UNE
+ * ligne de contenu, qui ne se replie pas (elle défile si l'écran est trop
+ * étroit). Le geste des galets sur Planning, « Pas de pointage à effectuer »
+ * sur Pointeuse, l'attente sur Propositions, la prochaine période sur
+ * Indisponibilités : le même bloc, à la même place, en tête.
+ */
+export declare function BlocInformation({ titre, aide, droite, children, className, }: {
+    titre: React.ReactNode;
+    /** L'explication invariable, derrière le « ? ». */
+    aide?: string;
+    /** Un signe tout à droite de l'intitulé (↗, ↘…). */
+    droite?: React.ReactNode;
+    /** La ligne de contenu — une seule. */
+    children: React.ReactNode;
+    className?: string;
+}): import("react").JSX.Element;

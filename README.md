@@ -163,6 +163,7 @@ recopiés à la main. Chaque motif de la charte vit désormais ici, une fois :
 | Actions | `CLASSE_PRINCIPAL`, `CLASSE_PRINCIPAL_TELEPHONE`, `CLASSE_ACQUIS`, `CLASSE_TERTIAIRE`, `CLASSE_VIDE`, `CLASSE_NAV`, `classeBascule`, `BarreActions` | quatre poids, un seul principal par zone, le destructif isolé à gauche ; une bascule à choix se dit en charbon, un filtre par son cadre |
 | Champs | `CLASSE_CHAMP`, `Libelle`, `CLASSE_INTITULE` | fond blanc, intitulé au-dessus |
 | Shift en liste | `LigneShift`, `Journee` | une ligne jamais colorée : pastille de la maison, horaire, durée, icônes après le décompte, état à droite ; les jours regroupent leurs shifts, même sur deux maisons. La cellule colorée de la grille (`couleurShift`) reste à la vue globale, jamais à une liste (Roch, 07/09/2026) |
+| Bloc d'information | `BlocInformation` | deux lignes, toujours : l'intitulé (+ « ? », + signe à droite), puis UNE ligne de contenu — en tête d'écran, même hauteur, même largeur partout (Roch, 07/09/2026) |
 | Aide | `Aide` | l'explication invariable derrière un « ? », lisible au doigt — jamais un `title=` seul |
 
 **Un outil qui définit localement l'un de ces motifs a tort**, même à

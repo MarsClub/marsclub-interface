@@ -1,4 +1,5 @@
 import { Aide } from './aide.js'
+import { CLASSE_INTITULE } from './formulaires.js'
 
 /**
  * Les cartes de la charte (§6) : le cadre de tout contenu structuré.
@@ -105,5 +106,45 @@ export function Kpi({
       {detail && <div className="text-[10px] leading-tight tabular-nums text-charbon/50 md:text-xs">{detail}</div>}
       {echo && <div className="text-[10px] leading-tight tabular-nums text-charbon/45 md:text-xs">{echo}</div>}
     </div>
+  )
+}
+
+/**
+ * Le bloc d'information (Roch, 07/09/2026 : « le format exact du bloc
+ * galet », « toujours le même format en hauteur et en largeur ») — deux
+ * lignes, jamais plus : l'intitulé en petites capitales, son « ? » s'il y a
+ * une explication invariable, un signe tout à droite s'il y a lieu ; puis UNE
+ * ligne de contenu, qui ne se replie pas (elle défile si l'écran est trop
+ * étroit). Le geste des galets sur Planning, « Pas de pointage à effectuer »
+ * sur Pointeuse, l'attente sur Propositions, la prochaine période sur
+ * Indisponibilités : le même bloc, à la même place, en tête.
+ */
+export function BlocInformation({
+  titre,
+  aide,
+  droite,
+  children,
+  className = '',
+}: {
+  titre: React.ReactNode
+  /** L'explication invariable, derrière le « ? ». */
+  aide?: string
+  /** Un signe tout à droite de l'intitulé (↗, ↘…). */
+  droite?: React.ReactNode
+  /** La ligne de contenu — une seule. */
+  children: React.ReactNode
+  className?: string
+}) {
+  return (
+    <section className={`px-3 py-2 ${CLASSE_CARTE} ${className}`.trim()}>
+      <div className={`mb-1 flex items-center gap-1.5 ${CLASSE_INTITULE}`}>
+        {titre}
+        {aide && <Aide texte={aide} />}
+        {droite && <span className="ml-auto text-base font-bold leading-none text-charbon">{droite}</span>}
+      </div>
+      <p className="flex flex-nowrap items-baseline gap-x-3 overflow-x-auto whitespace-nowrap text-sm text-charbon tabular-nums">
+        {children}
+      </p>
+    </section>
   )
 }

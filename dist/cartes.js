@@ -1,5 +1,6 @@
 import { jsx as _jsx, jsxs as _jsxs } from "react/jsx-runtime";
 import { Aide } from './aide.js';
+import { CLASSE_INTITULE } from './formulaires.js';
 /**
  * Les cartes de la charte (§6) : le cadre de tout contenu structuré.
  */
@@ -28,4 +29,17 @@ export function SousSection({ titre, children, className = '' }) {
  */
 export function Kpi({ libelle, valeur, detail, echo, alerte = false, aide, className = '', }) {
     return (_jsxs("div", { className: `${CLASSE_CARTE} px-2 py-1.5 md:px-3 md:py-2 ${className}`.trim(), children: [_jsxs("div", { className: "flex items-center gap-1 text-[10px] font-semibold uppercase tracking-wide text-charbon/50 md:text-xs", children: [libelle, aide && _jsx(Aide, { texte: aide })] }), _jsx("div", { className: `font-display text-lg font-semibold md:text-xl ${alerte ? "text-red-700 before:content-['⚠_']" : ''}`, children: valeur }), detail && _jsx("div", { className: "text-[10px] leading-tight tabular-nums text-charbon/50 md:text-xs", children: detail }), echo && _jsx("div", { className: "text-[10px] leading-tight tabular-nums text-charbon/45 md:text-xs", children: echo })] }));
+}
+/**
+ * Le bloc d'information (Roch, 07/09/2026 : « le format exact du bloc
+ * galet », « toujours le même format en hauteur et en largeur ») — deux
+ * lignes, jamais plus : l'intitulé en petites capitales, son « ? » s'il y a
+ * une explication invariable, un signe tout à droite s'il y a lieu ; puis UNE
+ * ligne de contenu, qui ne se replie pas (elle défile si l'écran est trop
+ * étroit). Le geste des galets sur Planning, « Pas de pointage à effectuer »
+ * sur Pointeuse, l'attente sur Propositions, la prochaine période sur
+ * Indisponibilités : le même bloc, à la même place, en tête.
+ */
+export function BlocInformation({ titre, aide, droite, children, className = '', }) {
+    return (_jsxs("section", { className: `px-3 py-2 ${CLASSE_CARTE} ${className}`.trim(), children: [_jsxs("div", { className: `mb-1 flex items-center gap-1.5 ${CLASSE_INTITULE}`, children: [titre, aide && _jsx(Aide, { texte: aide }), droite && _jsx("span", { className: "ml-auto text-base font-bold leading-none text-charbon", children: droite })] }), _jsx("p", { className: "flex flex-nowrap items-baseline gap-x-3 overflow-x-auto whitespace-nowrap text-sm text-charbon tabular-nums", children: children })] }));
 }
