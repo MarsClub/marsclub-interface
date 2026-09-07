@@ -9,7 +9,12 @@ import { CLASSE_INTITULE } from './formulaires.js'
 export const CLASSE_CARTE = 'rounded-xl border-2 border-sable bg-white/50'
 
 /** Le voile d'une carte estompée : crème translucide par-dessus tout, sans capter le doigt. */
-const CLASSE_ESTOMPEE = 'relative after:pointer-events-none after:absolute after:inset-0 after:bg-creme/50'
+/**
+ * Le voile fait tout le travail (3.4.1, Roch : « les textes déjà atténués le
+ * sont deux fois… écrire ces mentions en charbon plein ») : sous le voile,
+ * tout le texte passe en charbon plein, quelle que soit sa classe.
+ */
+const CLASSE_ESTOMPEE = 'relative after:pointer-events-none after:absolute after:inset-0 after:bg-creme/50 [&_*]:text-charbon!'
 
 /**
  * Ce qui reste net dans une carte estompée (Roch, 07/09/2026 : « on a des
