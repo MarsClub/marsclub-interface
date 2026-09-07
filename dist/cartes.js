@@ -26,7 +26,7 @@ export const CLASSE_TENU_SI_OUVERT = '[&:has(details[open])]:relative [&:has(det
  * `overflow-x-auto` — la page ne défile jamais horizontalement.
  */
 export function CarteSection({ titre, sous, centre, droite, estompee = false, children, className = '', }) {
-    return (_jsxs("section", { className: `overflow-hidden ${CLASSE_CARTE} ${estompee ? CLASSE_ESTOMPEE : ''} ${className}`.trim(), children: [_jsxs("div", { className: `flex items-baseline gap-2 bg-sable/40 px-3 py-1.5 ${centre ? 'flex-nowrap' : 'flex-wrap'}`, children: [_jsx("h2", { className: "shrink-0 font-display font-semibold", children: titre }), sous && _jsx("span", { className: "text-xs text-charbon/60", children: sous }), centre && _jsx("span", { className: "min-w-0 flex-1 truncate text-center font-display font-semibold", children: centre }), droite && _jsx("span", { className: "ml-auto shrink-0", children: droite })] }), children] }));
+    return (_jsxs("section", { className: `overflow-hidden ${CLASSE_CARTE} ${className}`.trim(), children: [_jsxs("div", { className: `flex items-baseline gap-2 bg-sable/40 px-3 py-1.5 ${centre ? 'flex-nowrap' : 'flex-wrap'}`, children: [_jsx("h2", { className: "shrink-0 font-display font-semibold", children: titre }), sous && _jsx("span", { className: "text-xs text-charbon/60", children: sous }), centre && _jsx("span", { className: "min-w-0 flex-1 truncate text-center font-display font-semibold", children: centre }), droite && _jsx("span", { className: "ml-auto shrink-0", children: droite })] }), estompee ? _jsx("div", { className: CLASSE_ESTOMPEE, children: children }) : children] }));
 }
 /** Une sous-section dans un panneau de fiche : un titre, un contenu. */
 export function SousSection({ titre, children, className = '' }) {

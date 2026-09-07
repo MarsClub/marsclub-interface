@@ -54,23 +54,27 @@ export function CarteSection({
   /**
    * Légèrement grisée (Roch, 07/09/2026) : une carte dont le contenu est
    * derrière soi — une semaine passée et déjà pointée. Un voile crème
-   * translucide se pose SUR la carte (3.3.0) plutôt qu'une opacité : ce qui
-   * doit rester net — un bouton, un badge, le jour qu'on est en train de
-   * corriger — se lève au-dessus du voile avec `CLASSE_TENU`.
+   * translucide se pose sur son CONTENU (3.3.0, puis 3.4.0 : la bande de
+   * titre reste nette, avec le statut qu'elle porte) plutôt qu'une opacité :
+   * ce qui doit rester net dans le contenu — un bouton, le jour qu'on est
+   * en train de corriger — se lève au-dessus du voile avec `CLASSE_TENU`.
    */
   estompee?: boolean
   children: React.ReactNode
   className?: string
 }) {
   return (
-    <section className={`overflow-hidden ${CLASSE_CARTE} ${estompee ? CLASSE_ESTOMPEE : ''} ${className}`.trim()}>
+    <section className={`overflow-hidden ${CLASSE_CARTE} ${className}`.trim()}>
       <div className={`flex items-baseline gap-2 bg-sable/40 px-3 py-1.5 ${centre ? 'flex-nowrap' : 'flex-wrap'}`}>
         <h2 className="shrink-0 font-display font-semibold">{titre}</h2>
         {sous && <span className="text-xs text-charbon/60">{sous}</span>}
         {centre && <span className="min-w-0 flex-1 truncate text-center font-display font-semibold">{centre}</span>}
         {droite && <span className="ml-auto shrink-0">{droite}</span>}
       </div>
-      {children}
+      {/* Le voile ne couvre que le CONTENU (3.4.0, Roch : « enlève le voile
+          sur le titre — le statut d'une semaine reste lisible, seul son
+          contenu se voile »). */}
+      {estompee ? <div className={CLASSE_ESTOMPEE}>{children}</div> : children}
     </section>
   )
 }

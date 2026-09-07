@@ -36,9 +36,10 @@ export declare function CarteSection({ titre, sous, centre, droite, estompee, ch
     /**
      * Légèrement grisée (Roch, 07/09/2026) : une carte dont le contenu est
      * derrière soi — une semaine passée et déjà pointée. Un voile crème
-     * translucide se pose SUR la carte (3.3.0) plutôt qu'une opacité : ce qui
-     * doit rester net — un bouton, un badge, le jour qu'on est en train de
-     * corriger — se lève au-dessus du voile avec `CLASSE_TENU`.
+     * translucide se pose sur son CONTENU (3.3.0, puis 3.4.0 : la bande de
+     * titre reste nette, avec le statut qu'elle porte) plutôt qu'une opacité :
+     * ce qui doit rester net dans le contenu — un bouton, le jour qu'on est
+     * en train de corriger — se lève au-dessus du voile avec `CLASSE_TENU`.
      */
     estompee?: boolean;
     children: React.ReactNode;

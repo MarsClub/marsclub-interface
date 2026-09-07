@@ -33,6 +33,13 @@ export const CLASSE_PRINCIPAL_TELEPHONE = CLASSE_BOUTON_TELEPHONE;
 export const CLASSE_ACQUIS = 'rounded-lg bg-sable px-3 py-1.5 text-sm font-semibold text-charbon';
 /** Un état en cours, pas encore acquis : le cadre sable sans fond. */
 export const CLASSE_EN_COURS = 'rounded-lg border-2 border-sable bg-transparent px-3 py-1.5 text-sm font-semibold text-charbon';
+/**
+ * Les mêmes états, en PETIT (3.4.0, Roch : le badge « avait la taille d'un
+ * bouton » et faisait grandir la bande de semaine) — pour une bande de
+ * titre, où l'état accompagne sans commander la hauteur.
+ */
+export const CLASSE_ACQUIS_PETIT = 'rounded bg-sable px-1.5 py-px text-xs font-semibold text-charbon';
+export const CLASSE_EN_COURS_PETIT = 'rounded border border-sable bg-transparent px-1.5 py-px text-xs font-semibold text-charbon';
 export const CLASSE_VIDE = 'rounded-lg border border-dashed border-charbon/40 bg-white px-3 py-1.5 text-sm font-semibold text-charbon/70';
 /** Les chevrons ‹ › et le retour au présent d'un en-tête daté : des boutons. */
 export const CLASSE_NAV = `rounded-lg border border-charbon/30 bg-white px-2.5 py-1 font-semibold text-charbon ${SURVOL}`;
