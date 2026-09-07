@@ -4,6 +4,17 @@
 /** La carte : listes, tableaux, panneaux. */
 export declare const CLASSE_CARTE = "rounded-xl border-2 border-sable bg-white/50";
 /**
+ * Ce qui reste net dans une carte estompée (Roch, 07/09/2026 : « on a des
+ * actions et un statut ») — un bouton, un badge : posé au-dessus du voile.
+ */
+export declare const CLASSE_TENU = "relative z-10";
+/**
+ * Le jour qu'on corrige reste net (Roch, 07/09/2026 : « si clic sur
+ * Modifier, dégriser le bloc jour ») — pour l'élément qui CONTIENT le
+ * dépliant : dès qu'un `<details>` s'y ouvre, il se lève au-dessus du voile.
+ */
+export declare const CLASSE_TENU_SI_OUVERT = "[&:has(details[open])]:relative [&:has(details[open])]:z-10";
+/**
  * Une carte de section, avec sa bande de titre sable : un titre en Atma, un
  * sous-titre estompé qui dit d'où viennent les chiffres. Huit copies dans
  * Hora avant le 04/09/2026. Un tableau à l'intérieur défile dans son propre
@@ -24,8 +35,10 @@ export declare function CarteSection({ titre, sous, centre, droite, estompee, ch
     droite?: React.ReactNode;
     /**
      * Légèrement grisée (Roch, 07/09/2026) : une carte dont le contenu est
-     * derrière soi — une semaine passée et déjà pointée. Le contenu reste
-     * lisible et actionnable ; seule l'attention baisse.
+     * derrière soi — une semaine passée et déjà pointée. Un voile crème
+     * translucide se pose SUR la carte (3.3.0) plutôt qu'une opacité : ce qui
+     * doit rester net — un bouton, un badge, le jour qu'on est en train de
+     * corriger — se lève au-dessus du voile avec `CLASSE_TENU`.
      */
     estompee?: boolean;
     children: React.ReactNode;

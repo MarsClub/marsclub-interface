@@ -6,6 +6,19 @@ import { CLASSE_INTITULE } from './formulaires.js';
  */
 /** La carte : listes, tableaux, panneaux. */
 export const CLASSE_CARTE = 'rounded-xl border-2 border-sable bg-white/50';
+/** Le voile d'une carte estompée : crème translucide par-dessus tout, sans capter le doigt. */
+const CLASSE_ESTOMPEE = 'relative after:pointer-events-none after:absolute after:inset-0 after:bg-creme/50';
+/**
+ * Ce qui reste net dans une carte estompée (Roch, 07/09/2026 : « on a des
+ * actions et un statut ») — un bouton, un badge : posé au-dessus du voile.
+ */
+export const CLASSE_TENU = 'relative z-10';
+/**
+ * Le jour qu'on corrige reste net (Roch, 07/09/2026 : « si clic sur
+ * Modifier, dégriser le bloc jour ») — pour l'élément qui CONTIENT le
+ * dépliant : dès qu'un `<details>` s'y ouvre, il se lève au-dessus du voile.
+ */
+export const CLASSE_TENU_SI_OUVERT = '[&:has(details[open])]:relative [&:has(details[open])]:z-10';
 /**
  * Une carte de section, avec sa bande de titre sable : un titre en Atma, un
  * sous-titre estompé qui dit d'où viennent les chiffres. Huit copies dans
@@ -13,7 +26,7 @@ export const CLASSE_CARTE = 'rounded-xl border-2 border-sable bg-white/50';
  * `overflow-x-auto` — la page ne défile jamais horizontalement.
  */
 export function CarteSection({ titre, sous, centre, droite, estompee = false, children, className = '', }) {
-    return (_jsxs("section", { className: `overflow-hidden ${CLASSE_CARTE} ${estompee ? 'opacity-60' : ''} ${className}`.trim(), children: [_jsxs("div", { className: `flex items-baseline gap-2 bg-sable/40 px-3 py-1.5 ${centre ? 'flex-nowrap' : 'flex-wrap'}`, children: [_jsx("h2", { className: "shrink-0 font-display font-semibold", children: titre }), sous && _jsx("span", { className: "text-xs text-charbon/60", children: sous }), centre && _jsx("span", { className: "min-w-0 flex-1 truncate text-center font-display font-semibold", children: centre }), droite && _jsx("span", { className: "ml-auto shrink-0", children: droite })] }), children] }));
+    return (_jsxs("section", { className: `overflow-hidden ${CLASSE_CARTE} ${estompee ? CLASSE_ESTOMPEE : ''} ${className}`.trim(), children: [_jsxs("div", { className: `flex items-baseline gap-2 bg-sable/40 px-3 py-1.5 ${centre ? 'flex-nowrap' : 'flex-wrap'}`, children: [_jsx("h2", { className: "shrink-0 font-display font-semibold", children: titre }), sous && _jsx("span", { className: "text-xs text-charbon/60", children: sous }), centre && _jsx("span", { className: "min-w-0 flex-1 truncate text-center font-display font-semibold", children: centre }), droite && _jsx("span", { className: "ml-auto shrink-0", children: droite })] }), children] }));
 }
 /** Une sous-section dans un panneau de fiche : un titre, un contenu. */
 export function SousSection({ titre, children, className = '' }) {
