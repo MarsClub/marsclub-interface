@@ -41,5 +41,5 @@ export function Kpi({ libelle, valeur, detail, echo, alerte = false, aide, class
  * Indisponibilités : le même bloc, à la même place, en tête.
  */
 export function BlocInformation({ titre, aide, droite, children, className = '', }) {
-    return (_jsxs("section", { className: `px-3 py-2 ${CLASSE_CARTE} ${className}`.trim(), children: [_jsxs("div", { className: `mb-1 flex items-center gap-1.5 ${CLASSE_INTITULE}`, children: [titre, aide && _jsx(Aide, { texte: aide }), droite && _jsx("span", { className: "ml-auto text-base font-bold leading-none text-charbon", children: droite })] }), _jsx("p", { className: "flex flex-nowrap items-baseline gap-x-3 overflow-x-auto whitespace-nowrap text-sm text-charbon tabular-nums", children: children })] }));
+    return (_jsxs("section", { className: `px-3 py-2 ${CLASSE_CARTE} ${className}`.trim(), children: [_jsxs("div", { className: `mb-1 flex items-center gap-1.5 ${CLASSE_INTITULE}`, children: [titre, aide && _jsx(Aide, { texte: aide }), droite && _jsx("span", { className: "ml-auto flex items-center leading-none normal-case tracking-normal text-charbon", children: droite })] }), _jsx("p", { className: "flex flex-nowrap items-baseline gap-x-3 overflow-x-auto whitespace-nowrap text-sm text-charbon tabular-nums", children: children })] }));
 }

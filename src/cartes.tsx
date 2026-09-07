@@ -140,7 +140,11 @@ export function BlocInformation({
       <div className={`mb-1 flex items-center gap-1.5 ${CLASSE_INTITULE}`}>
         {titre}
         {aide && <Aide texte={aide} />}
-        {droite && <span className="ml-auto text-base font-bold leading-none text-charbon">{droite}</span>}
+        {/* Le coin droit ne fixe ni taille ni graisse (3.2.1) : un signe se
+            passe en gras et plus grand par l'appelant, une date en petit —
+            et la rangée garde la hauteur de l'intitulé, jamais un pixel de
+            plus (Roch, 07/09/2026 : « trop grand en hauteur »). */}
+        {droite && <span className="ml-auto flex items-center leading-none normal-case tracking-normal text-charbon">{droite}</span>}
       </div>
       <p className="flex flex-nowrap items-baseline gap-x-3 overflow-x-auto whitespace-nowrap text-sm text-charbon tabular-nums">
         {children}
