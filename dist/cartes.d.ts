@@ -9,7 +9,7 @@ export declare const CLASSE_CARTE = "rounded-xl border-2 border-sable bg-white/5
  * Hora avant le 04/09/2026. Un tableau à l'intérieur défile dans son propre
  * `overflow-x-auto` — la page ne défile jamais horizontalement.
  */
-export declare function CarteSection({ titre, sous, centre, droite, children, className, }: {
+export declare function CarteSection({ titre, sous, centre, droite, estompee, children, className, }: {
     titre: React.ReactNode;
     sous?: React.ReactNode;
     /**
@@ -22,6 +22,12 @@ export declare function CarteSection({ titre, sous, centre, droite, children, cl
     centre?: React.ReactNode;
     /** Ce qui se pose à droite de la bande : un compte, un filtre, une action. */
     droite?: React.ReactNode;
+    /**
+     * Légèrement grisée (Roch, 07/09/2026) : une carte dont le contenu est
+     * derrière soi — une semaine passée et déjà pointée. Le contenu reste
+     * lisible et actionnable ; seule l'attention baisse.
+     */
+    estompee?: boolean;
     children: React.ReactNode;
     className?: string;
 }): import("react").JSX.Element;

@@ -18,6 +18,7 @@ export function CarteSection({
   sous,
   centre,
   droite,
+  estompee = false,
   children,
   className = '',
 }: {
@@ -33,11 +34,17 @@ export function CarteSection({
   centre?: React.ReactNode
   /** Ce qui se pose à droite de la bande : un compte, un filtre, une action. */
   droite?: React.ReactNode
+  /**
+   * Légèrement grisée (Roch, 07/09/2026) : une carte dont le contenu est
+   * derrière soi — une semaine passée et déjà pointée. Le contenu reste
+   * lisible et actionnable ; seule l'attention baisse.
+   */
+  estompee?: boolean
   children: React.ReactNode
   className?: string
 }) {
   return (
-    <section className={`overflow-hidden ${CLASSE_CARTE} ${className}`.trim()}>
+    <section className={`overflow-hidden ${CLASSE_CARTE} ${estompee ? 'opacity-60' : ''} ${className}`.trim()}>
       <div className={`flex items-baseline gap-2 bg-sable/40 px-3 py-1.5 ${centre ? 'flex-nowrap' : 'flex-wrap'}`}>
         <h2 className="shrink-0 font-display font-semibold">{titre}</h2>
         {sous && <span className="text-xs text-charbon/60">{sous}</span>}
