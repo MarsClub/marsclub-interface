@@ -164,7 +164,7 @@ recopiés à la main. Chaque motif de la charte vit désormais ici, une fois :
 | Champs | `CLASSE_CHAMP`, `Libelle`, `CLASSE_INTITULE` | fond blanc, intitulé au-dessus |
 | Shift en liste | `LigneShift`, `Journee` | une ligne jamais colorée : pastille de la maison, horaire, durée, icônes après le décompte, état à droite ; les jours regroupent leurs shifts, même sur deux maisons. La cellule colorée de la grille (`couleurShift`) reste à la vue globale, jamais à une liste (Roch, 07/09/2026) |
 | Bloc d'information | `BlocInformation` | deux lignes, toujours : l'intitulé (+ « ? », + signe à droite), puis UNE ligne de contenu — en tête d'écran, même hauteur, même largeur partout (Roch, 07/09/2026) |
-| Aide | `Aide` | l'explication invariable derrière un « ? », lisible au doigt — jamais un `title=` seul |
+| Aide | `Aide` | l'explication invariable derrière un « ? », lisible au doigt — jamais un `title=` seul ; sa carte est en `fixed`, ramenée dans la fenêtre à l'ouverture (3.5.0), donc elle ne déborde pas d'un téléphone et n'est pas coupée par l'`overflow-hidden` d'une `CarteSection` |
 
 **Un outil qui définit localement l'un de ces motifs a tort**, même à
 l'identique : la copie diverge, c'est toute l'histoire de ce paquet. Un
