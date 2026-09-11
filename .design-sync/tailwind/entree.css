@@ -1,0 +1,152 @@
+/*
+ * L'entrée Tailwind des aperçus de design system.
+ *
+ * Ce paquet ne livre aucun CSS compilé — c'est l'application hôte qui fait
+ * tourner Tailwind sur `node_modules/marsclub-interface/dist` (voir le
+ * `globals.css` d'Hora). Un aperçu de composant n'a pas d'application hôte :
+ * on refait donc ici, à l'identique, ce que fait `globals.css`, et le
+ * résultat compilé part dans le bundle.
+ *
+ * ⚠️ La ligne `@source` n'est pas optionnelle, ici comme là-bas : sans elle
+ * les classes des composants sont purgées et les aperçus arrivent SANS
+ * STYLE, sans la moindre erreur.
+ *
+ * Recompiler après toute modification d'un composant :
+ *   npx --prefix .ds-sync tailwindcss \
+ *     -i .design-sync/tailwind/entree.css -o .design-sync/tailwind/compile.css
+ */
+@import "tailwindcss";
+@import "../../src/theme.css";
+@source "../../dist";
+@source "../previews";
+
+/*
+ * ─────────────────────────────────────────────────────────────────────────
+ * La charpente
+ * ─────────────────────────────────────────────────────────────────────────
+ * Dans un outil, Tailwind tourne sur TOUT le code de l'application : qui
+ * écrit `grid-cols-3` l'obtient. Ici, non — le CSS livré ne contient que ce
+ * que le scan a trouvé dans `dist/`, c'est-à-dire les classes des composants
+ * et rien d'autre. Qui compose une page AVEC le design system a pourtant
+ * besoin de poser une grille, un écart, une marge.
+ *
+ * D'où cette liste : le vocabulaire de charpente garanti présent dans le
+ * CSS livré. Il est volontairement borné — la palette de la maison, les
+ * espacements de l'échelle, la typographie, rien de décoratif. Les couleurs
+ * hors palette n'y sont pas, et c'est exprès : la règle « ne jamais inventer
+ * de couleur » se tient aussi par ce qui manque.
+ *
+ * ⚠️ Toute classe ajoutée ici doit être ajoutée à `.design-sync/conventions.md`,
+ * qui est ce que l'agent de design lit. Une liste qui ment est pire qu'absente.
+ */
+
+/* Boîtes et flux */
+@source inline("{block,inline-block,inline,flex,inline-flex,grid,inline-grid,contents,hidden}");
+@source inline("{sm,md,lg}:{block,inline-block,flex,inline-flex,grid,hidden}");
+@source inline("flex-{row,row-reverse,col,col-reverse,wrap,nowrap,1,auto,initial,none}");
+@source inline("{sm,md,lg}:flex-{row,col,wrap,nowrap}");
+@source inline("items-{start,center,end,baseline,stretch}");
+@source inline("justify-{start,center,end,between,around,evenly}");
+@source inline("content-{start,center,end,between}");
+@source inline("self-{auto,start,center,end,stretch,baseline}");
+@source inline("{grow,grow-0,shrink,shrink-0}");
+@source inline("grid-cols-{1..6}");
+@source inline("{sm,md,lg}:grid-cols-{1..6}");
+@source inline("grid-rows-{1..4}");
+/* ⚠️ Une plage `{1..6}` ne s'étend PAS si on lui mêle un littéral dans la
+   même accolade : `col-span-{1..6,full}` n'avait produit que `col-span-full`.
+   Deux lignes, donc — et une sonde dans la vérification de conventions.md. */
+@source inline("col-span-{1..6}");
+@source inline("{col-span-full,row-span-2,row-span-3,row-span-full}");
+@source inline("order-{first,last,none,1,2,3}");
+
+/* Écarts, marges, retraits — l'échelle des composants, pas une de plus */
+@source inline("{gap,gap-x,gap-y}-{0,px,0.5,1,1.5,2,2.5,3,3.5,4,5,6,8,10,12}");
+@source inline("{p,px,py,pt,pr,pb,pl}-{0,px,0.5,1,1.5,2,2.5,3,3.5,4,5,6,8,10,12}");
+@source inline("{sm,md,lg}:{p,px,py}-{1,2,3,4,6,8}");
+@source inline("{m,mx,my,mt,mr,mb,ml}-{0,px,0.5,1,1.5,2,2.5,3,4,5,6,8,10,12,auto}");
+@source inline("space-{x,y}-{0,1,2,3,4,6}");
+
+/* Tailles */
+@source inline("w-{full,auto,fit,min,max,screen,px,1/2,1/3,2/3,1/4,3/4}");
+@source inline("h-{full,auto,fit,min,max,screen,px}");
+@source inline("{min-w,min-h}-{0,full,fit}");
+@source inline("max-w-{none,full,fit,xs,sm,md,lg,xl,2xl,3xl,4xl,5xl,6xl,7xl,prose}");
+
+/* Typographie */
+@source inline("text-{xs,sm,base,lg,xl,2xl,3xl,4xl,5xl}");
+@source inline("{sm,md,lg}:text-{xs,sm,base,lg,xl,2xl,3xl,4xl}");
+@source inline("font-{sans,display,normal,medium,semibold,bold}");
+@source inline("text-{left,center,right,justify}");
+@source inline("leading-{none,tight,snug,normal,relaxed,loose}");
+@source inline("tracking-{tighter,tight,normal,wide,wider,widest}");
+@source inline("{uppercase,lowercase,capitalize,normal-case}");
+@source inline("{truncate,tabular-nums,whitespace-nowrap,whitespace-normal,break-words,italic,not-italic,underline,no-underline,line-through,sr-only,list-none,list-disc}");
+
+/*
+ * Couleurs : la palette de la maison, et elle seule. Le rouge est la seule
+ * teinte hors palette du design system — il veut dire attention, rien
+ * d'autre. Jaune et vert n'existent QU'EN APLAT DE FOND (`bg-`) : pas de
+ * `text-jaune-bam`, pas de `border-vert-olla`, c'est la règle de lisibilité
+ * en plein soleil et à l'impression.
+ */
+@source inline("bg-{charbon,sable,creme,jaune-bam,vert-olla,white,transparent}");
+@source inline("bg-{charbon,sable,creme,white}/{5,10,15,20,25,30,40,50,60,70,75,80,90}");
+@source inline("{hover:,focus-visible:,}bg-charbon");
+@source inline("text-{charbon,creme,white}");
+@source inline("text-charbon/{30,35,40,45,50,55,60,65,70,75,80,90}");
+@source inline("{hover:,focus-visible:,}text-{charbon,creme}");
+@source inline("border-{charbon,sable,creme,white,transparent}");
+@source inline("border-{charbon,sable}/{10,15,20,25,30,40,50,60,70}");
+@source inline("{hover:,focus-visible:,}border-charbon");
+@source inline("border-l-{charbon,sable,jaune-bam,vert-olla}");
+@source inline("{text-red-600,text-red-700,border-red-600,border-red-700,bg-red-50}");
+
+/* Cadres et coins */
+@source inline("border{,-0,-2,-4}");
+@source inline("border-{t,r,b,l}{,-0,-2,-4}");
+@source inline("rounded{,-none,-sm,-md,-lg,-xl,-2xl,-3xl,-full}");
+@source inline("{border-solid,border-dashed,border-dotted}");
+@source inline("divide-{y,x}");
+
+/* Position, débordement, relief */
+@source inline("{static,relative,absolute,fixed,sticky}");
+@source inline("{inset-0,inset-x-0,inset-y-0,top-0,right-0,bottom-0,left-0}");
+@source inline("z-{0,10,20,30,40,50}");
+@source inline("overflow-{auto,hidden,visible,scroll}");
+@source inline("overflow-{x,y}-{auto,hidden,visible,scroll}");
+@source inline("shadow{,-xs,-sm,-md,-lg,-xl,-none}");
+@source inline("opacity-{0,20,40,50,60,70,80,90,100}");
+@source inline("{cursor-pointer,cursor-default,cursor-not-allowed,pointer-events-none,select-none,transition,transition-colors,transition-opacity}");
+@source inline("{align-middle,align-baseline,align-top}");
+
+/*
+ * Les polices sont propres à chaque outil dans la vraie vie (chargées par
+ * son layout via `next/font/google`). Les aperçus les servent en dur depuis
+ * `.design-sync/polices/` — mêmes familles, mêmes graisses.
+ */
+@theme {
+  --font-sans: "Nunito Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Atma", "Nunito Sans", sans-serif;
+}
+
+/*
+ * Tailwind n'émet une variable de `@theme inline` que si quelque chose la
+ * référence — et les composants, eux, portent la valeur en dur dans leurs
+ * utilitaires. Or qui construit AVEC le design system a besoin des cinq
+ * couleurs en variables CSS (`var(--color-sable)`). Cette ligne les force à
+ * sortir SANS recopier un seul hexadécimal : la palette reste définie une
+ * fois, dans `src/theme.css`.
+ */
+:root {
+  --marsclub-palette: var(--color-charbon), var(--color-sable), var(--color-creme),
+    var(--color-jaune-bam), var(--color-vert-olla);
+}
+
+/* Le fond général de tous les outils internes : crème, texte charbon. */
+body {
+  background: var(--color-creme);
+  color: var(--color-charbon);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
