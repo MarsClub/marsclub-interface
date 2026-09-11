@@ -92,6 +92,15 @@ ln -sfn ../.ds-sync/node_modules .design-sync/node_modules   # ⚠ indispensable
   cache est le build **1194**, que seule cette version épingle (1.55 → 1187,
   1.57 → 1200). Une autre version échoue sur « Executable doesn't exist ».
   Si le cache change, `DS_CHROMIUM_PATH` force le chemin du binaire.
+- **Sur le Mac de Roch (session du 11/09/2026)** : aucun Chromium Playwright
+  en cache. On a installé `playwright` sans épingle
+  (`PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD=1`, 1.63.0 ce jour-là) et fait tourner
+  validate et capture sur le **Google Chrome installé** :
+  `DS_CHROMIUM_PATH="/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"`.
+  Aucun téléchargement, et les emojis y sortent en vraie couleur.
+- npm bloque les scripts d'installation d'esbuild et de @parcel/watcher
+  (`allow-scripts`) : sans conséquence, esbuild marche par son paquet de
+  plateforme, et le CLI Tailwind n'a besoin du watcher qu'en `--watch`.
 - Commandes : `cfg.buildCmd` (tsc + Tailwind) puis `package-build.mjs`, puis
   `package-validate.mjs`, puis `package-capture.mjs`. Ou `resync.mjs` qui
   enchaîne tout.
@@ -136,8 +145,9 @@ liste est nouveau** : le regarder, puis le corriger ou l'inscrire ici.
 - **`BoutonFermer` — `cardMode: "column"`** dans `cfg.overrides` : la cellule
   `DansUnPanneau` débordait de sa case de grille (`[GRID_OVERFLOW]`).
 - **Les emojis (⏸️ 🍴 🔑 🏡) sortent en glyphes de secours** dans le Chromium
-  sans police emoji couleur de cet environnement. Ils s'affichent
-  normalement dans un navigateur réel.
+  sans police emoji couleur du conteneur distant. Ils s'affichent
+  normalement dans un navigateur réel — vérifié le 11/09/2026 sur le Chrome
+  du Mac, où les planches les montrent en couleur.
 
 ## Risques — ce qui peut se périmer en silence
 
@@ -170,29 +180,30 @@ liste est nouveau** : le regarder, puis le corriger ou l'inscrire ici.
    machine, refaire l'appariement playwright ↔ build.
 6. **L'état de vérification ne vit PAS dans git.** `.design-sync/.cache/` est
    ignoré ; ce qui rend les notes durables, c'est le `_ds_sync.json`
-   **téléversé** dans le projet claude.ai. Tant que rien n'est téléversé,
-   chaque passage renote les 65 cellules à partir de zéro.
+   **téléversé** dans le projet claude.ai. Il y est depuis le 11/09/2026 :
+   une resynchronisation qui ne va pas le chercher (voir ci-dessous) renote
+   les 65 cellules à partir de zéro, pour rien.
 
-## Reste à faire : le téléversement
+## Téléversement — fait le 11/09/2026
 
-**Rien n'a encore été envoyé à claude.ai/design.** L'outil `DesignSync` a
-refusé l'autorisation depuis la session distante (claude.ai/code), message
-exact :
+Projet Claude Design **« MarsClub Interface »**, épinglé dans `config.json` :
+`d512a586-62af-46e6-92b1-1254970af9c1` —
+https://claude.ai/design/p/d512a586-62af-46e6-92b1-1254970af9c1
 
-> DesignSync needs design-system authorization, and /design-login cannot run
-> in this non-interactive session. Ask the user to run /design-login once from
-> an interactive Claude Code session on this machine.
+Premier import depuis une session Claude Code interactive sur le Mac (la
+session distante n'avait pas l'autorisation `/design-login`). 23 composants,
+65 cellules renotées `good` sur ce Mac (les notes de la session distante,
+gitignorées, n'avaient pas suivi), validate sans avertissement,
+`verifier-conventions.mjs` en 0, 134 fichiers envoyés, ancre `_ds_sync.json`
+en dernier.
 
-Le bundle est construit et vérifié localement (`ds-bundle/`, non versionné).
-Pour finir, depuis une session **Claude Code interactive sur le Mac** :
+**Resynchroniser** (après la mise en route sur un clone neuf) :
 
-1. `/design-login` une fois.
-2. Refaire la mise en route ci-dessus (le clone y est déjà, mais `.ds-sync/`
-   et le lien `node_modules` sont gitignorés).
-3. `node .ds-sync/resync.mjs --config .design-sync/config.json --node-modules
-   ./.ds-sync/node_modules --entry ./dist/index.js --out ./ds-bundle`
-4. Créer le projet (`DesignSync create_project`), **inscrire son `projectId`
-   dans `config.json`**, puis téléverser selon la skill `/design-sync`.
-
-Tant que `config.json` ne porte pas de `projectId`, chaque passage repart
-d'une vérification complète.
+1. `/design-login` si la session n'a pas l'autorisation, puis `/design-sync`.
+2. Rapatrier l'ancre : `DesignSync get_file _ds_sync.json` →
+   `.design-sync/.cache/remote-sync.json`.
+3. `DS_CHROMIUM_PATH=… node .ds-sync/resync.mjs --config .design-sync/config.json
+   --node-modules ./.ds-sync/node_modules --entry ./dist/index.js --out ./ds-bundle
+   --remote .design-sync/.cache/remote-sync.json`
+4. `node .design-sync/verifier-conventions.mjs`, puis envoi atomique selon
+   la skill (le `projectId` est épinglé : plus jamais de chemin incrémental).
