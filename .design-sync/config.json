@@ -1,0 +1,39 @@
+{
+  "pkg": "marsclub-interface",
+  "globalName": "MarsclubInterface",
+  "shape": "package",
+  "buildCmd": "npm run build && ./.ds-sync/node_modules/.bin/tailwindcss -i .design-sync/tailwind/entree.css -o .design-sync/tailwind/compile.css",
+  "cssEntry": ".design-sync/tailwind/compile.css",
+  "extraFonts": [".design-sync/polices/polices.css"],
+  "guidelinesGlob": ["README.md"],
+  "readmeHeader": ".design-sync/conventions.md",
+  "docsDir": ".design-sync/docs",
+  "overrides": {
+    "BoutonFermer": { "cardMode": "column" }
+  },
+  "componentSrcMap": {
+    "Aide": "src/aide.tsx",
+    "Bandeau": "src/messages.tsx",
+    "BarreActions": "src/actions.tsx",
+    "BlocInformation": "src/cartes.tsx",
+    "BlocLieu": "src/lieux.tsx",
+    "BoutonConfirme": "src/bouton-confirme.tsx",
+    "BoutonFermer": "src/boutons.tsx",
+    "CarteSection": "src/cartes.tsx",
+    "Cartouche": "src/filtres.tsx",
+    "CompteurSolari": "src/compteur-solari.tsx",
+    "CroixRetirer": "src/boutons.tsx",
+    "EnTete": "src/en-tete.tsx",
+    "IconePersonne": "src/porteur.tsx",
+    "Journee": "src/lieux.tsx",
+    "Kpi": "src/cartes.tsx",
+    "Libelle": "src/formulaires.tsx",
+    "LigneShift": "src/lieux.tsx",
+    "LisereLieux": "src/lieux.tsx",
+    "Onglets": "src/onglets.tsx",
+    "PastilleLieu": "src/lieux.tsx",
+    "PorteurJeton": "src/porteur.tsx",
+    "SousSection": "src/cartes.tsx",
+    "Vide": "src/messages.tsx"
+  }
+}
