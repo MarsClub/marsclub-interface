@@ -2,6 +2,7 @@
   "pkg": "marsclub-interface",
   "globalName": "MarsclubInterface",
   "shape": "package",
+  "projectId": "d512a586-62af-46e6-92b1-1254970af9c1",
   "buildCmd": "npm run build && ./.ds-sync/node_modules/.bin/tailwindcss -i .design-sync/tailwind/entree.css -o .design-sync/tailwind/compile.css",
   "cssEntry": ".design-sync/tailwind/compile.css",
   "extraFonts": [".design-sync/polices/polices.css"],
